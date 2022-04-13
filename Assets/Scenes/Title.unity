@@ -697,7 +697,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5136897289231426913}
         m_TargetAssemblyTypeName: SettingPanel, Assembly-CSharp
         m_MethodName: SetPanelOn
         m_Mode: 1
@@ -1101,15 +1101,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3548889485373550251, guid: 65867d0356e581442aee5b76647f9189, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3548889485738688396, guid: 65867d0356e581442aee5b76647f9189, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3548889485741914388, guid: 65867d0356e581442aee5b76647f9189, type: 3}
       propertyPath: m_Name
       value: SettingPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548889485741914388, guid: 65867d0356e581442aee5b76647f9189, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3548889485741914389, guid: 65867d0356e581442aee5b76647f9189, type: 3}
       propertyPath: m_Pivot.x
@@ -1197,14 +1201,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3548889486205938677, guid: 65867d0356e581442aee5b76647f9189, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3548889486466725919, guid: 65867d0356e581442aee5b76647f9189, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65867d0356e581442aee5b76647f9189, type: 3}
+--- !u!114 &5136897289231426913 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3548889485741914385, guid: 65867d0356e581442aee5b76647f9189, type: 3}
+  m_PrefabInstance: {fileID: 5136897289231426912}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 127863ee32f170f43ad1adac1eaf2fa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8505572298987510901 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3548889485741914389, guid: 65867d0356e581442aee5b76647f9189, type: 3}
