@@ -23,8 +23,8 @@ public class Touch_Panel : MonoBehaviour, IPointerClickHandler
         {
             Debug.Log("Lighter"); // 아이템 습득 - 라이터
         }
-        else if (eventData.position.x >= 188 && eventData.position.x <= 196 &&
-            eventData.position.y >= 420 && eventData.position.y <= 435)
+        else if (eventData.position.x >= 140 && eventData.position.x <= 150 &&
+            eventData.position.y >= 315 && eventData.position.y <= 330)
         {
             Debug.Log("DoorLock"); // 대화 스크립트 - 도어락 + 비밀번호 입력창
         }
