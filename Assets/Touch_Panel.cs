@@ -3,32 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Touch_Panel : MonoBehaviour, IPointerClickHandler
+public class Touch_Panel : MonoBehaviour
 {
+    public Inventory inventory;
 
-    public void OnPointerClick(PointerEventData eventData)
+    void Update()
     {
-        if(eventData.position.x >= 30 && eventData.position.x <= 50 && 
-            eventData.position.y >= 150 && eventData.position.y <= 170)
+        if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Box"); // 아이템 습득 - 박스 -> 이후 해체해서 기름 습득
+            Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero, 0f);
+            if(hit.collider != null)
+            {
+                GameObject click_obj = hit.transform.gameObject;
+                if(click_obj.name == "Book")
+                {
+                    inventory.AcquireItem(hit.transform.GetComponent<ItemPickUp>().item);
+                    Destroy(hit.transform.gameObject);
+                }
+                else if (click_obj.name == "Lighter")
+                {
+                    // 대사 출력
+                    Destroy(click_obj);
+                    // 아이템 획득 UI 출력
+                    // 인벤토리에 아이템 추가
+                }
+                else if (click_obj.name == "Gas")
+                {
+                    // 대사 출력
+                    Destroy(click_obj);
+                    // 아이템 획득 UI 출력
+                    // 인벤토리에 아이템 추가
+                }
+                else if (click_obj.name == "DoorLock")
+                {
+                    Debug.Log(click_obj.name);
+                    // 대사 출력 (1번만)
+                    // UI 팝업 출력 (비밀번호 입력 창)
+                }
+                else if (click_obj.name == "Window")
+                {
+                    Debug.Log(click_obj.name);
+                    // 대사 출력
+                }
+            }
         }
-        else if (eventData.position.x >= 80 && eventData.position.x <= 115 &&
-            eventData.position.y >= 230 && eventData.position.y <= 260)
-        {
-            Debug.Log("Book"); // 대화 스크립트 - 성경구절 Hint
-        }
-        else if (eventData.position.x >= 170 && eventData.position.x <= 180 &&
-            eventData.position.y >= 252 && eventData.position.y <= 262)
-        {
-            Debug.Log("Lighter"); // 아이템 습득 - 라이터
-        }
-        else if (eventData.position.x >= 140 && eventData.position.x <= 150 &&
-            eventData.position.y >= 315 && eventData.position.y <= 330)
-        {
-            Debug.Log("DoorLock"); // 대화 스크립트 - 도어락 + 비밀번호 입력창
-        }
-        else Debug.Log(eventData.position);
     }
 
 }
