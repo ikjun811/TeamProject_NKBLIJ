@@ -712,8 +712,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   go_DialogueBar: {fileID: 1864944720}
   go_DialogueNameBar: {fileID: 333795895}
-  txt_Dialogue: {fileID: 0}
-  txt_Name: {fileID: 0}
+  txt_Dialogue: {fileID: 719305308}
+  txt_Name: {fileID: 908003743}
+  textDelay: 0.05
 --- !u!1 &1864944720
 GameObject:
   m_ObjectHideFlags: 0
