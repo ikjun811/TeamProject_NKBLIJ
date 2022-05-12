@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DoorLockUI : MonoBehaviour
 {
@@ -26,6 +27,13 @@ public class DoorLockUI : MonoBehaviour
 
     private void OnEnable()
     {
+        input_count = 4;
+        temp1 = 99;
+        temp2 = 99;
+        temp3 = 99;
+        temp4 = 99;
+        suc_flag = true;
+        flag = false;
         input_count = 4;
     }
 
@@ -110,6 +118,7 @@ public class DoorLockUI : MonoBehaviour
                     flag = true;
                     tp.DoorLockPanelOff();
                     // 대사 출력
+                    SceneManager.LoadScene("5F_CandleRoom");
                 }
                 else
                 {
