@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class DoorLockUI : MonoBehaviour
 {
+    private GameObject clikedObj;
 
     public Touch_Panel tp;
     int temp1;
@@ -41,75 +42,81 @@ public class DoorLockUI : MonoBehaviour
     {
             if (Input.GetMouseButtonDown(0))
             {
-                Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero);
-            // 비밀번호 = 0115
-            if (Input.mousePosition.x >= 80 && Input.mousePosition.x <= 115 && Input.mousePosition.y >= 340 && Input.mousePosition.y <= 370) // 1
+            Debug.Log(Input.mousePosition);
+            Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero);
+            if (hit.collider != null)
             {
-                input_count -= 1;
-                if (suc_flag == true && temp1 == 0 & temp2 == 99 & temp3 == 99)
-                {
-                    temp2 = 1;
-                }
-                else if (suc_flag == true && temp1 == 0 && temp2 == 1 && temp3 == 99)
-                {
-                    temp3 = 1;
-                }
-                else suc_flag = false;
-            }
-            else if (Input.mousePosition.x >= 120 && Input.mousePosition.x <= 155 && Input.mousePosition.y >= 340 && Input.mousePosition.y <= 370) // 2
-            {
-                input_count -= 1; suc_flag = false;
-            }
-            else if (Input.mousePosition.x >= 160 && Input.mousePosition.x <= 195 && Input.mousePosition.y >= 340 && Input.mousePosition.y <= 370) // 3
-            {
-                input_count -= 1; suc_flag = false;
-            }
-            else if (Input.mousePosition.x >= 80 && Input.mousePosition.x <= 115 && Input.mousePosition.y >= 300 && Input.mousePosition.y <= 330) // 4
-            {
-                input_count -= 1; suc_flag = false;
-            }
-            else if (Input.mousePosition.x >= 120 && Input.mousePosition.x <= 155 && Input.mousePosition.y >= 300 && Input.mousePosition.y <= 330) // 5
-            {
-                input_count -= 1;
-                if(temp1 == 0 && temp2 == 1 & temp3 == 1 && suc_flag == true)
-                {
-                    temp4 = 5;
-                }
-            }
-            else if (Input.mousePosition.x >= 160 && Input.mousePosition.x <= 195 && Input.mousePosition.y >= 300 && Input.mousePosition.y <= 330) // 6 
-            {
-                input_count -= 1; suc_flag = false;
-            }
-            else if (Input.mousePosition.x >= 80 && Input.mousePosition.x <= 115 && Input.mousePosition.y >= 260 && Input.mousePosition.y <= 290) // 7 
-            {
-                input_count -= 1; suc_flag = false;
-            }
-            else if (Input.mousePosition.x >= 120 && Input.mousePosition.x <= 155 && Input.mousePosition.y >= 260 && Input.mousePosition.y <= 290) // 8 
-            {
-                input_count -= 1; suc_flag = false;
-            }
-            else if (Input.mousePosition.x >= 160 && Input.mousePosition.x <= 195 && Input.mousePosition.y >= 260 && Input.mousePosition.y <= 290) // 9 
-            {
-                input_count -= 1; suc_flag = false;
-            }
-            else if (Input.mousePosition.x >= 120 && Input.mousePosition.x <= 155 && Input.mousePosition.y >= 220 && Input.mousePosition.y <= 250) // 0
-            {
-                input_count -= 1;
-                if(temp1==99 && temp2 == 99 && temp3 == 99 && suc_flag == true)
-                {
-                    temp1 = 0;
-                }
-                else suc_flag = false;
+                clikedObj = hit.transform.gameObject;
 
-            }
-            else if (Input.mousePosition.x >= 80 && Input.mousePosition.x <= 115 && Input.mousePosition.y >= 220 && Input.mousePosition.y <= 250)
-            {
-                input_count -= 1; suc_flag = false;
-            }
-            else if (Input.mousePosition.x >= 160 && Input.mousePosition.x <= 195 && Input.mousePosition.y >= 220 && Input.mousePosition.y <= 250)
-            {
-                input_count -= 1; suc_flag = false;
+                // 비밀번호 = 0115
+                if (clikedObj.name == "btn(1)") // 1
+                {
+                    input_count -= 1;
+                    if (suc_flag == true && temp1 == 0 & temp2 == 99 & temp3 == 99)
+                    {
+                        temp2 = 1;
+                    }
+                    else if (suc_flag == true && temp1 == 0 && temp2 == 1 && temp3 == 99)
+                    {
+                        temp3 = 1;
+                    }
+                    else suc_flag = false;
+                }
+                else if (clikedObj.name == "btn(2)") // 2
+                {
+                    input_count -= 1; suc_flag = false;
+                }
+                else if (clikedObj.name == "btn(3)") // 3
+                {
+                    input_count -= 1; suc_flag = false;
+                }
+                else if (clikedObj.name == "btn(4)") // 4
+                {
+                    input_count -= 1; suc_flag = false;
+                }
+                else if (clikedObj.name == "btn(5)") // 5
+                {
+                    input_count -= 1;
+                    if (temp1 == 0 && temp2 == 1 & temp3 == 1 && suc_flag == true)
+                    {
+                        temp4 = 5;
+                    }
+                }
+                else if (clikedObj.name == "btn(6)") // 6 
+                {
+                    input_count -= 1; suc_flag = false;
+                }
+                else if (clikedObj.name == "btn(7)") // 7 
+                {
+                    input_count -= 1; suc_flag = false;
+                }
+                else if (clikedObj.name == "btn(8)") // 8 
+                {
+                    input_count -= 1; suc_flag = false;
+                }
+                else if (clikedObj.name == "btn(9)") // 9 
+                {
+                    input_count -= 1; suc_flag = false;
+                }
+                else if (clikedObj.name == "btn(0)") // 0
+                {
+                    input_count -= 1;
+                    if (temp1 == 99 && temp2 == 99 && temp3 == 99 && suc_flag == true)
+                    {
+                        temp1 = 0;
+                    }
+                    else suc_flag = false;
+
+                }
+                else if (clikedObj.name == "btnstar")
+                {
+                    input_count -= 1; suc_flag = false;
+                }
+                else if (clikedObj.name == "btnsharp")
+                {
+                    input_count -= 1; suc_flag = false;
+                }
             }
             if (input_count < 1)
             {
