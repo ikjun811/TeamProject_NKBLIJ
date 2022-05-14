@@ -15,6 +15,12 @@ public class Touch_Panel : MonoBehaviour
     private bool flag_Gas;
     public GameObject DoorLockPanel;
     public GameObject DoorLock;
+
+    DialogueManager theDM;
+
+    InteractionEvent getdialog;
+
+
     private void Start()
     {
         clikedObj = null;
@@ -22,6 +28,10 @@ public class Touch_Panel : MonoBehaviour
 
         flag_Lighter = false;
         flag_Gas = false;
+
+        theDM = FindObjectOfType<DialogueManager>();
+
+        getdialog = FindObjectOfType<InteractionEvent>();
     }
     void Update()
     {
@@ -37,6 +47,7 @@ public class Touch_Panel : MonoBehaviour
                 if (clikedObj.name == "Lighter")
                 {
                     // 대사 출력
+                    theDM.ShowDialogue(getdialog.GetComponent<InteractionEvent>().GetDialogue());
                     NewItemAddText.GetComponent<Text>().text = "아이템 획득 : 라이터";
                     inventory.AddItem(clikedObj.GetComponent<Item_PickUp>().item);
                     Destroy(clikedObj);
