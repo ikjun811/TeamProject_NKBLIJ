@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Touch_Panel : MonoBehaviour
 {
-    UIManager um;
+    private UIManager um;
     private GameObject clikedObj;
     public Inventory inventory;
     public Text NewItemAddText;

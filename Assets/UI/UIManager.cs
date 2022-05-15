@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public GameObject InventoryPanel;
     public GameObject NewItemAddPanel;
 
+
     private void Start()
     {
         IsUIOn = false;
@@ -69,4 +70,5 @@ public class UIManager : MonoBehaviour
         IsUIOn = false;
         NewItemAddPanel.SetActive(false);
     }
+
 }

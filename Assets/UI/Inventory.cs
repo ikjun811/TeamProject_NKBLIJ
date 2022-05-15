@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] 
     private Transform slotParent;
     [SerializeField] 
-    private Slot_item[] slots; 
+    public Slot_item[] slots; 
     private void OnValidate() 
     { 
         slots = slotParent.GetComponentsInChildren<Slot_item>(); 
@@ -32,8 +32,8 @@ public class Inventory : MonoBehaviour
     { 
         if (items.Count < slots.Length) 
         {
-            items.Add(_item); 
-            FreshSlot(); 
+            items.Add(_item);  // items List에 _item 추가
+            FreshSlot(); // 슬롯에 아이템 이미지 표시
         } 
         else 
         { 
