@@ -6,15 +6,15 @@ using UnityEngine.SceneManagement;
 public class DoorLockUI : MonoBehaviour
 {
     private GameObject clikedObj;
-
     public Touch_Panel tp;
+    public Inventory inventory;
+
     int temp1;
     int temp2; 
     int temp3;
     int temp4;
     int input_count;
     bool suc_flag;
-    public bool flag;
     void Start()
     {
         input_count = 4;
@@ -23,7 +23,6 @@ public class DoorLockUI : MonoBehaviour
         temp3 = 99;
         temp4 = 99;
         suc_flag = true;
-        flag = false;
     }
 
     private void OnEnable()
@@ -34,7 +33,6 @@ public class DoorLockUI : MonoBehaviour
         temp3 = 99;
         temp4 = 99;
         suc_flag = true;
-        flag = false;
         input_count = 4;
     }
 
@@ -42,7 +40,6 @@ public class DoorLockUI : MonoBehaviour
     {
             if (Input.GetMouseButtonDown(0))
             {
-            Debug.Log(Input.mousePosition);
             Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero);
             if (hit.collider != null)
@@ -122,7 +119,7 @@ public class DoorLockUI : MonoBehaviour
             {
                 if(temp1 == 0 && temp2 == 1 && temp3 == 1 && temp4 == 5)
                 {
-                    flag = true;
+                    inventory.RemoveItem("Lighter");
                     tp.DoorLockPanelOff();
                     // 대사 출력
                     SceneManager.LoadScene("5F_CandleRoom");
@@ -134,6 +131,7 @@ public class DoorLockUI : MonoBehaviour
             }
         }
     }
+
 }
 
 
