@@ -8,6 +8,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] GameObject go_DialogueBar;
     [SerializeField] GameObject go_DialogueNameBar;
 
+
     [SerializeField] Text txt_Dialogue;
     [SerializeField] Text txt_Name;
 
@@ -21,6 +22,13 @@ public class DialogueManager : MonoBehaviour
 
     int lineCount = 0;
     int contextCount = 0;
+
+    SpriteManager theSpriteManager;
+
+    void Start()
+    {
+        theSpriteManager = FindObjectOfType<SpriteManager>();
+    }
 
     void Update()
     {
@@ -76,15 +84,25 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(TypeWriter());
     }
 
+    void ChangeSprite()
+    {
+        if(dialogues[lineCount].spriteName[contextCount] != "")
+        {
+            StartCoroutine(theSpriteManager.SpriteChangeCoroutine(this.gameObject.transform, dialogues[lineCount].spriteName[contextCount]));
+        }
+    }
+
     IEnumerator TypeWriter()
     {
         SettingUI(true);
+        ChangeSprite();
 
         string t_ReplaceText = dialogues[lineCount].contexts[contextCount];
+
         t_ReplaceText = t_ReplaceText.Replace("'", ",");
 
 
-        txt_Name.text = dialogues[lineCount].name;
+        
         for(int i = 0; i< t_ReplaceText.Length; i++)
         {
             txt_Dialogue.text += t_ReplaceText[i];
@@ -97,7 +115,23 @@ public class DialogueManager : MonoBehaviour
 
     void SettingUI(bool p_flag)
     {
-        go_DialogueBar.SetActive(p_flag); 
-        go_DialogueNameBar.SetActive(p_flag);
+        go_DialogueBar.SetActive(p_flag);
+
+        if (p_flag)
+        {
+            if(dialogues[lineCount].name == "")
+            {
+                go_DialogueNameBar.SetActive(false);
+            }
+            else
+            {
+                go_DialogueNameBar.SetActive(true);
+                txt_Name.text = dialogues[lineCount].name;
+            }
+        }
+        else
+        {
+            go_DialogueNameBar.SetActive(false);
+        }
     }
 }

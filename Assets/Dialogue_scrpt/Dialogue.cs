@@ -6,11 +6,14 @@ using UnityEngine;
 public class Dialogue 
 {
 
-    [Tooltip("대사치는 캐릭터 이름")]
+    [HideInInspector]
     public string name;
 
-    [Tooltip("대사 내용")]
+    [HideInInspector]
     public string[] contexts;
+
+    [HideInInspector]
+    public string[] spriteName;
 }
 
 [System.Serializable]
