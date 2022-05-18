@@ -16,113 +16,62 @@ public class ItemPanel : MonoBehaviour
         GameObject slotParent = transform.parent.gameObject;
         if (slotParent.name == "Slot (1)")
         {
-            item = ivtry.slots[0].item;
-            if (item != null)
-            {
-                ipoo.setItem(item, slotParent);
-                ipoo.ItemPanelOn();
-            }
+            findItemHelper(0, slotParent);
         }
         else if (slotParent.name == "Slot (2)")
         {
-            item = ivtry.slots[1].item;
-            if (item != null)
-            {
-                ipoo.setItem(item, slotParent);
-                ipoo.ItemPanelOn();
-            }
+            findItemHelper(1, slotParent);
         }
         else if (slotParent.name == "Slot (3)")
         {
-            item = ivtry.slots[2].item;
-            if (item != null)
-            {
-                ipoo.setItem(item, slotParent);
-                ipoo.ItemPanelOn();
-            }
+            findItemHelper(2, slotParent);
         }
         else if (slotParent.name == "Slot (4)")
         {
-            item = ivtry.slots[3].item;
-            if (item != null)
-            {
-                ipoo.setItem(item, slotParent);
-                ipoo.ItemPanelOn();
-            }
+            findItemHelper(3, slotParent);
         }
         else if (slotParent.name == "Slot (5)")
         {
-            item = ivtry.slots[4].item;
-            if (item != null)
-            {
-                ipoo.setItem(item, slotParent);
-                ipoo.ItemPanelOn();
-            }
+            findItemHelper(4, slotParent);
         }
         else if (slotParent.name == "Slot (6)")
         {
-            item = ivtry.slots[5].item;
-            if (item != null)
-            {
-                ipoo.setItem(item, slotParent);
-                ipoo.ItemPanelOn();
-            }
+            findItemHelper(5, slotParent);
         }
         else if (slotParent.name == "Slot (7)")
         {
-            item = ivtry.slots[6].item;
-            if (item != null)
-            {
-                ipoo.setItem(item, slotParent);
-                ipoo.ItemPanelOn();
-            }
+            findItemHelper(6, slotParent);
         }
         else if (slotParent.name == "Slot (8)")
         {
-            item = ivtry.slots[7].item;
-            if (item != null)
-            {
-                ipoo.setItem(item, slotParent);
-                ipoo.ItemPanelOn();
-            }
+            findItemHelper(7, slotParent);
         }
         else if (slotParent.name == "Slot (9)")
         {
-            item = ivtry.slots[8].item;
-            if (item != null)
-            {
-                ipoo.setItem(item, slotParent);
-                ipoo.ItemPanelOn();
-            }
+            findItemHelper(8, slotParent);
         }
         else if (slotParent.name == "Slot (10)")
         {
-            item = ivtry.slots[9].item;
-            if (item != null)
-            {
-                ipoo.setItem(item, slotParent);
-                ipoo.ItemPanelOn();
-            }
+            findItemHelper(9, slotParent);
         }
         else if (slotParent.name == "Slot (11)")
         {
-            item = ivtry.slots[10].item;
-            if (item != null)
-            {
-                ipoo.setItem(item, slotParent);
-                ipoo.ItemPanelOn();
-            }
+            findItemHelper(10, slotParent);
         }
         else if (slotParent.name == "Slot (12)")
         {
-            item = ivtry.slots[11].item;
-            if (item != null)
-            {
-                ipoo.setItem(item, slotParent);
-                ipoo.ItemPanelOn();
-            }
+            findItemHelper(11, slotParent);
         }
         else return;
     }
-    
+    private void findItemHelper(int i, GameObject slotParent)
+    {
+        item = ivtry.slots[i].item;
+        if (item != null)
+        {
+            ipoo.setItem(item, slotParent);
+            ipoo.ItemPanelOn();
+        }
+        else ipoo.ItemPanelOff();
+    }
 }

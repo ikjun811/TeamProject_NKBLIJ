@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -9,7 +10,10 @@ public class UIManager : MonoBehaviour
     public GameObject SettingPanel;
     public GameObject InventoryPanel;
     public GameObject NewItemAddPanel;
-
+    public Text NewItemAddText;
+    public GameObject ItemNameText;
+    public GameObject ItemInfoText;
+    public ItemPanelOnOff ipoo; // itemPanel 에 붙은 스크립트 가져옴
 
     private void Start()
     {
@@ -57,12 +61,15 @@ public class UIManager : MonoBehaviour
     }
     public void InventoryOff()
     {
+        ipoo.ItemPanelOff();
+        ItemNameInfoTextOff();
         InventoryPanel.SetActive(false);
         IsUIOn = false;
     }
-    public void NewItemAddPanelOn()
+    public void NewItemAddPanelOn(string str)
     {
         IsUIOn = true;
+        NewItemAddText.GetComponent<Text>().text = str;
         NewItemAddPanel.SetActive(true);
     }
     public void NewItemAddPanelOff()
@@ -70,5 +77,16 @@ public class UIManager : MonoBehaviour
         IsUIOn = false;
         NewItemAddPanel.SetActive(false);
     }
-
+    public void ItemNameInfoTextOn(string name, string info)
+    {
+        ItemNameText.GetComponent<Text>().text = name;
+        ItemInfoText.GetComponent<Text>().text = info;
+        ItemNameText.SetActive(true);
+        ItemInfoText.SetActive(true);
+    }
+    public void ItemNameInfoTextOff()
+    {
+        ItemNameText.SetActive(false);
+        ItemInfoText.SetActive(false);
+    }
 }

@@ -42,18 +42,25 @@ public class Inventory : MonoBehaviour
     }
     public void RemoveItem(string itemName)
     {
-        int k = 0;
         for (int i = 0; i < items.Count && i < slots.Length; i++)
         {
-            k++;
             if (slots[i].item.name == itemName)
             {
-                k++;
                 items.Remove(slots[i].item);
                 FreshSlot();
                 break;
             }
-            if (k > 100) break;
         }
+    }
+    public bool FindItem(string itemName)
+    {
+        for (int i = 0; i < items.Count && i < slots.Length; i++)
+        {
+            if (slots[i].item.name == itemName)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

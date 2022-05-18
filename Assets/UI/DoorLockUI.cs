@@ -119,7 +119,7 @@ public class DoorLockUI : MonoBehaviour
             {
                 if(temp1 == 0 && temp2 == 1 && temp3 == 1 && temp4 == 5)
                 {
-                    inventory.RemoveItem("Lighter");
+                    inventory.RemoveItem("Lighter"); // 나중에 변경
                     tp.DoorLockPanelOff();
                     // 대사 출력
                     SceneManager.LoadScene("5F_CandleRoom");

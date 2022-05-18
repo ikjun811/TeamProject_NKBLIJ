@@ -5,5 +5,6 @@ using UnityEngine;
 public class Item : ScriptableObject 
 { 
     public string itemName; 
-    public Sprite itemImage; 
+    public Sprite itemImage;
+    public string itemInfo;
 }
