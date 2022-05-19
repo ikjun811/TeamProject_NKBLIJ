@@ -47,7 +47,7 @@ public class Touch_Panel : MonoBehaviour
                 if (clikedObj.name == "Lighter")
                 {
                     // 대사 출력
-                    theDM.ShowDialogue(getdialog.GetComponent<InteractionEvent>().GetDialogue());
+                    theDM.ShowDialogue(getdialog.GetComponent<InteractionEvent>().GetDialogue(), 36, 41);
                     NewItemAddText.GetComponent<Text>().text = "아이템 획득 : 라이터";
                     inventory.AddItem(clikedObj.GetComponent<Item_PickUp>().item);
                     Destroy(clikedObj);
@@ -74,6 +74,7 @@ public class Touch_Panel : MonoBehaviour
                 else if (clikedObj.name == "Book")
                 {
                     // 대사 출력
+                    theDM.ShowDialogue(getdialog.GetComponent<InteractionEvent>().GetDialogue(), 1, 18);
                 }
                 else if (clikedObj.name == "Window")
                 {

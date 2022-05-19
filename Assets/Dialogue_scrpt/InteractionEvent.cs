@@ -6,9 +6,13 @@ public class InteractionEvent : MonoBehaviour
 {
     [SerializeField] DialogueEvent dialogue;
 
-    public Dialogue[] GetDialogue()
+    void Start()
     {
         dialogue.dialogues = DatabaseManager.instance.GetDialogue((int)dialogue.line.x, (int)dialogue.line.y);
+    }
+
+    public Dialogue[] GetDialogue()
+    {
         return dialogue.dialogues;
     }
 }

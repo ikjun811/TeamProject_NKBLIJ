@@ -7,6 +7,8 @@ public class DialogueManager : MonoBehaviour
 {
     [SerializeField] GameObject go_DialogueBar;
     [SerializeField] GameObject go_DialogueNameBar;
+    [SerializeField] GameObject Char_sprite;
+    [SerializeField] GameObject BG_light;
 
 
     [SerializeField] Text txt_Dialogue;
@@ -22,6 +24,7 @@ public class DialogueManager : MonoBehaviour
 
     int lineCount = 0;
     int contextCount = 0;
+    int End_text_num = 0;
 
     SpriteManager theSpriteManager;
 
@@ -36,7 +39,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (isNext)
             {
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetMouseButtonDown(0))
                 {
                     isNext = false;
                     txt_Dialogue.text = "";
@@ -47,7 +50,7 @@ public class DialogueManager : MonoBehaviour
                     else
                     {
                         contextCount = 0;
-                        if(++lineCount< dialogues.Length)
+                        if(++lineCount< End_text_num)
                         {
                             StartCoroutine(TypeWriter());
                         }
@@ -71,7 +74,7 @@ public class DialogueManager : MonoBehaviour
         SettingUI(false);
     }
 
-    public void ShowDialogue(Dialogue[] p_dialogues)
+    public void ShowDialogue(Dialogue[] p_dialogues, int start_num, int end_num)
     {
         isDialogue = true;
 
@@ -79,6 +82,9 @@ public class DialogueManager : MonoBehaviour
         txt_Name.text = "";
 
         dialogues = p_dialogues;
+
+        lineCount = start_num -1;
+        End_text_num = end_num;
 
         SettingUI(true);
         StartCoroutine(TypeWriter());
@@ -116,22 +122,26 @@ public class DialogueManager : MonoBehaviour
     void SettingUI(bool p_flag)
     {
         go_DialogueBar.SetActive(p_flag);
+        BG_light.SetActive(p_flag);
 
         if (p_flag)
         {
             if(dialogues[lineCount].name == "")
             {
                 go_DialogueNameBar.SetActive(false);
+                Char_sprite.SetActive(false);
             }
             else
             {
                 go_DialogueNameBar.SetActive(true);
                 txt_Name.text = dialogues[lineCount].name;
+                Char_sprite.SetActive(true);
             }
         }
         else
         {
             go_DialogueNameBar.SetActive(false);
+            Char_sprite.SetActive(false);
         }
     }
 }
