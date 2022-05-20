@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
     public Text NewItemAddText;
     public GameObject ItemNameText;
     public GameObject ItemInfoText;
-    public ItemPanelOnOff ipoo; // itemPanel 에 붙은 스크립트 가져옴
+    public ItemPanel ip; // itemPanel 에 붙은 스크립트 가져옴
 
     private void Start()
     {
@@ -61,7 +61,7 @@ public class UIManager : MonoBehaviour
     }
     public void InventoryOff()
     {
-        ipoo.ItemPanelOff();
+        ip.ItemPanelOff();
         ItemNameInfoTextOff();
         InventoryPanel.SetActive(false);
         IsUIOn = false;

@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemPanel : MonoBehaviour
+public class Slot_Item_Info : MonoBehaviour
 {
     public Inventory ivtry; // 인벤토리 가져오기
-    public ItemPanelOnOff ipoo; // itemPanel 에 붙은 스크립트 가져옴
+    public ItemPanel ip; // itemPanel 에 붙은 스크립트 가져옴
     Item item;
     private void Start()
     {
@@ -67,11 +67,30 @@ public class ItemPanel : MonoBehaviour
     private void findItemHelper(int i, GameObject slotParent)
     {
         item = ivtry.slots[i].item;
-        if (item != null)
+        if (ip.combineFlag == false && item != null)
         {
-            ipoo.setItem(item, slotParent);
-            ipoo.ItemPanelOn();
+            ip.setItem(item, slotParent);
+            ip.ItemPanelOn();
         }
-        else ipoo.ItemPanelOff();
+        else if (ip.combineFlag == true && item != null)
+        {
+            if ((ip.selecteditem.name == "Lighter" && item.name == "Gas")||(ip.selecteditem.name == "Gas" && item.name == "Lighter"))
+            {
+                Item newItem = Resources.Load("Item/5F/StartRoom/Lighter_F") as Item; // 새 아이템 프리팹 가져오기
+                ivtry.RemoveItem(ip.selecteditem.name);
+                ivtry.RemoveItem(item.name);
+                ivtry.AddItem(newItem);
+                ip.um.ItemNameInfoTextOff();
+                ip.um.NewItemAddPanelOn("아이템 획득 : 충전된 라이터");
+            }
+            else
+            {
+                ip.um.ItemNameInfoTextOn("아이템 조합 실패", "조합 불가 아이템");
+            }
+
+            ip.combineFlag = false;
+        }
+        else ip.ItemPanelOff();
     }
+    
 }

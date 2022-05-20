@@ -9,20 +9,17 @@ public class Touch_Panel : MonoBehaviour
     private UIManager um;
     private GameObject clikedObj;
     public Inventory inventory;
-    public ItemPanelOnOff ipoo; // itemPanel 에 붙은 스크립트 가져옴
+    public ItemPanel ip; // itemPanel 에 붙은 스크립트 가져옴
     public GameObject NowState; // 사용중 Text
     public GameObject NowLocate;
 
-    private bool flag_Lighter;
-    private bool flag_Gas;
     public GameObject DoorLockPanel;
     private void Start()
     {
         NowLocate.GetComponent<Text>().text = "현재 위치 : 시작의 방";
         clikedObj = null;
         um = GameObject.Find("UIManager").GetComponent<UIManager>();
-        flag_Lighter = false;
-        flag_Gas = false;
+
     }
     void Update()
     {
@@ -34,7 +31,7 @@ public class Touch_Panel : MonoBehaviour
             if (hit.collider != null)
             {
                 clikedObj = hit.transform.gameObject;
-                if (clikedObj.name == "라이터")
+                if (clikedObj.name == "Lighter")
                 {
                     if (NowState.activeSelf == false)
                     {
@@ -42,7 +39,6 @@ public class Touch_Panel : MonoBehaviour
                         inventory.AddItem(clikedObj.GetComponent<Item_PickUp>().item);
                         Destroy(clikedObj);
                         um.NewItemAddPanelOn("아이템 획득 : 가스 없는 라이터");
-                        flag_Lighter = true;
                         NowStateMsgCheck();
                     }
                     else
@@ -51,7 +47,7 @@ public class Touch_Panel : MonoBehaviour
                     }
                     NowStateMsgCheck();
                 }
-                else if (clikedObj.name == "상자")
+                else if (clikedObj.name == "Box")
                 {
                     // 대사 출력
                     if (NowState.activeSelf == false)
@@ -59,7 +55,6 @@ public class Touch_Panel : MonoBehaviour
                         inventory.AddItem(clikedObj.GetComponent<Item_PickUp>().item);
                         Destroy(clikedObj);
                         um.NewItemAddPanelOn("아이템 획득 : 상자");
-                        flag_Gas = true;
                         NowStateMsgCheck();
                     }
                     else
@@ -70,20 +65,18 @@ public class Touch_Panel : MonoBehaviour
                 }
                 else if (clikedObj.name == "DoorLock")
                 {
-                    // bool temp = inventory.FindItem("Gas");  조합 기능 이후 완성 예정
-                    string tempItemName = ipoo.getItem();
-                    if (flag_Gas == true && flag_Lighter == true && tempItemName == "Lighter" && NowState.activeSelf == true) // 분해 구현 시, Box & Gas 구분 + 조합된 아이템 구분
+                    string tempItemName = ip.getItem();
+                    if (tempItemName == "Lighter_F" && NowState.activeSelf == true)
                     {  // 조건 충족 시, 실행
                         DoorLockPanelOn();
                     }
-                    else if (flag_Gas == true && flag_Lighter == true && tempItemName != "Lighter" && NowState.activeSelf == true) // 분해 구현 시, Box & Gas 구분 + 조합된 아이템 구분
-                    {  // 조건은 다 만족시켰지만 도어락에 다른 아이템을 사용했을 때 : 발생 가능성은 없음
+                    else if (tempItemName != "Lighter_F" && NowState.activeSelf == true)
+                    {  // 조건은 다 만족시켰지만 도어락에 다른 아이템을 사용했을 때
                         um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
                     }
                     else // 조건 미충족
                     {
-                        um.NewItemAddPanelOn("조건 불충분"); // UI 대신, 대사 처리 필요
-                        // 대사 출력
+                        // 일반 대사창 -> 도어록이다 -> 비밀번호를 입력해야 나갈 수 있을 것 같다...
                     }
                     NowStateMsgCheck();
                 }

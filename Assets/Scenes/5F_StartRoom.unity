@@ -677,7 +677,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 900, y: 1100}
+  m_SizeDelta: {x: 900, y: 1300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &105185578
 MonoBehaviour:
@@ -1108,7 +1108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ivtry: {fileID: 310522904}
-  ipoo: {fileID: 1944911313}
+  ip: {fileID: 1944911313}
 --- !u!114 &260312710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1414,7 +1414,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1102599970}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -1588,10 +1588,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe1278bb059aeeb46ad06a6d4c89901c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  um: {fileID: 0}
+  um: {fileID: 1628166733}
   ivtry: {fileID: 310522904}
-  itemPanel: {fileID: 0}
+  itemPanel: {fileID: 1944911309}
   NowState: {fileID: 346849869}
+  selecteditem: {fileID: 0}
+  combineFlag: 0
 --- !u!1 &406368587
 GameObject:
   m_ObjectHideFlags: 0
@@ -2029,7 +2031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 310522904}
-  ipoo: {fileID: 1944911313}
+  ip: {fileID: 1944911313}
   NowState: {fileID: 346849869}
   NowLocate: {fileID: 1117971192}
   DoorLockPanel: {fileID: 1237763417}
@@ -3057,7 +3059,7 @@ GameObject:
   - component: {fileID: 716653634}
   - component: {fileID: 716653637}
   m_Layer: 0
-  m_Name: "\uB77C\uC774\uD130"
+  m_Name: Lighter
   m_TagString: gameObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3654,7 +3656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ivtry: {fileID: 310522904}
-  ipoo: {fileID: 1944911313}
+  ip: {fileID: 1944911313}
 --- !u!114 &857342887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3815,7 +3817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ivtry: {fileID: 310522904}
-  ipoo: {fileID: 1944911313}
+  ip: {fileID: 1944911313}
 --- !u!114 &919935089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4032,7 +4034,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ivtry: {fileID: 310522904}
-  ipoo: {fileID: 1944911313}
+  ip: {fileID: 1944911313}
 --- !u!1 &984588685
 GameObject:
   m_ObjectHideFlags: 0
@@ -4216,7 +4218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ivtry: {fileID: 310522904}
-  ipoo: {fileID: 1944911313}
+  ip: {fileID: 1944911313}
 --- !u!114 &1043065823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4433,7 +4435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ivtry: {fileID: 310522904}
-  ipoo: {fileID: 1944911313}
+  ip: {fileID: 1944911313}
 --- !u!1 &1087968272
 GameObject:
   m_ObjectHideFlags: 0
@@ -4605,8 +4607,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1117971193}
   - {fileID: 346849870}
+  - {fileID: 1117971193}
   - {fileID: 754462186}
   - {fileID: 1991400033}
   - {fileID: 310522903}
@@ -4779,7 +4781,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1102599970}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -4920,7 +4922,7 @@ GameObject:
   - component: {fileID: 1163746522}
   - component: {fileID: 1163746523}
   m_Layer: 0
-  m_Name: "\uC0C1\uC790"
+  m_Name: Box
   m_TagString: gameObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5175,7 +5177,7 @@ SpriteRenderer:
   m_Size: {x: 0.66, y: 0.66}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1174760203
@@ -5937,7 +5939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ivtry: {fileID: 310522904}
-  ipoo: {fileID: 1944911313}
+  ip: {fileID: 1944911313}
 --- !u!1 &1480283842
 GameObject:
   m_ObjectHideFlags: 0
@@ -6042,7 +6044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ivtry: {fileID: 310522904}
-  ipoo: {fileID: 1944911313}
+  ip: {fileID: 1944911313}
 --- !u!114 &1480283848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6324,7 +6326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ivtry: {fileID: 310522904}
-  ipoo: {fileID: 1944911313}
+  ip: {fileID: 1944911313}
 --- !u!114 &1522731051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6473,7 +6475,7 @@ SpriteRenderer:
   m_Size: {x: 0.66, y: 0.66}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1523902346
@@ -6819,7 +6821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ivtry: {fileID: 310522904}
-  ipoo: {fileID: 1944911313}
+  ip: {fileID: 1944911313}
 --- !u!114 &1627979555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6913,7 +6915,7 @@ MonoBehaviour:
   NewItemAddText: {fileID: 338828011}
   ItemNameText: {fileID: 2132325947}
   ItemInfoText: {fileID: 408756027}
-  ipoo: {fileID: 1944911313}
+  ip: {fileID: 1944911313}
 --- !u!4 &1628166734
 Transform:
   m_ObjectHideFlags: 0
@@ -7261,7 +7263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ivtry: {fileID: 310522904}
-  ipoo: {fileID: 1944911313}
+  ip: {fileID: 1944911313}
 --- !u!114 &1679412718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8422,6 +8424,8 @@ MonoBehaviour:
   ivtry: {fileID: 310522904}
   itemPanel: {fileID: 1944911309}
   NowState: {fileID: 346849869}
+  selecteditem: {fileID: 0}
+  combineFlag: 0
 --- !u!1 &1954570022
 GameObject:
   m_ObjectHideFlags: 0
@@ -8811,7 +8815,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ivtry: {fileID: 310522904}
-  ipoo: {fileID: 1944911313}
+  ip: {fileID: 1944911313}
 --- !u!114 &2040162601
 MonoBehaviour:
   m_ObjectHideFlags: 0

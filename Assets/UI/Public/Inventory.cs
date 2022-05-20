@@ -36,8 +36,8 @@ public class Inventory : MonoBehaviour
             FreshSlot(); // 슬롯에 아이템 이미지 표시
         } 
         else 
-        { 
-            print("인벤토리 초과"); // 발생 가능성 있을까?
+        {
+            Debug.Log("인벤토리초과");
         }
     }
     public void RemoveItem(string itemName)

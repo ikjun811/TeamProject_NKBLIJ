@@ -3,16 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemPanelOnOff : MonoBehaviour
+public class ItemPanel : MonoBehaviour
 {
     public UIManager um;
     public Inventory ivtry;
     public GameObject itemPanel;
     public GameObject NowState; // 사용중 Text
 
-    private bool usingFlag;
-    private Item selecteditem; // 선택한 아이템
+    public Item selecteditem; // 선택한 아이템
     private GameObject slotParent;
+    public bool combineFlag;
+
+    private void Start()
+    {
+        combineFlag = false;
+    }
 
     public void setItem(Item item, GameObject Parent) // 누른 아이템 정보를 받아옴
     {
@@ -58,9 +63,9 @@ public class ItemPanelOnOff : MonoBehaviour
 
     public void destroyItem() // 아이템 분해 버튼 이벤트
     {
+        ItemPanelOff(); // 아이템 선택지 패널 닫고
         if ( selecteditem.name == "Box") // Box 분해하면 Gas 얻기
         {
-            ItemPanelOff(); // 아이템 선택지 패널 닫고
             NowState.SetActive(false); // 만약 템사용중->인벤토리->분해할수도 있으니 꺼줌
             Item item = Resources.Load("Item/5F/StartRoom/Gas") as Item; // 새 아이템 프리팹 가져오기
             ivtry.RemoveItem(selecteditem.name);
@@ -69,14 +74,16 @@ public class ItemPanelOnOff : MonoBehaviour
         }
         else
         {
-            ItemPanelOff(); // 아이템 선택지 패널 닫고
             um.ItemNameInfoTextOn("아이템 분해 실패","분해 불가 아이템"); 
             return;
         }
     }
     public void combineItem() // 아이템 조합 버튼 이벤트
     {
-        ItemPanelOff(); // 아이템 선택지 패널 닫고
+        combineFlag = true;
+        NowState.SetActive(false);
+        ItemPanelOff();
         um.ItemNameInfoTextOn("아이템 조합", selecteditem.itemName + "\n+\n조합 대상 아이템 선택");
     }
+
 }
