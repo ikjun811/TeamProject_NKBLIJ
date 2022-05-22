@@ -2110,10 +2110,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 310522904}
-  ip: {fileID: 1944911313}
-  NowState: {fileID: 346849869}
-  NowLocate: {fileID: 1117971192}
+  NewItemAddText: {fileID: 0}
   DoorLockPanel: {fileID: 1237763417}
+  DoorLock: {fileID: 0}
 --- !u!61 &450823199
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2217,7 +2216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e8f9ff6b806732478a8c5926b0c3924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  csv_FileName: 
+  csv_FileName: scrpt_5F_startroom
 --- !u!114 &450823203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2232,6 +2231,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   go_DialogueBar: {fileID: 0}
   go_DialogueNameBar: {fileID: 0}
+  Char_sprite: {fileID: 0}
+  BG_light: {fileID: 0}
   txt_Dialogue: {fileID: 0}
   txt_Name: {fileID: 0}
   textDelay: 0
@@ -2817,7 +2818,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tp: {fileID: 450823198}
-  inventory: {fileID: 310522904}
+  flag: 0
 --- !u!1 &595150910
 GameObject:
   m_ObjectHideFlags: 0
@@ -6174,6 +6175,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   go_DialogueBar: {fileID: 2124719634}
   go_DialogueNameBar: {fileID: 121626235}
+  Char_sprite: {fileID: 0}
+  BG_light: {fileID: 0}
   txt_Dialogue: {fileID: 1862649058}
   txt_Name: {fileID: 1675261695}
   textDelay: 0.03
@@ -7233,10 +7236,6 @@ MonoBehaviour:
   SettingPanel: {fileID: 3548889484889710871}
   InventoryPanel: {fileID: 1745823966}
   NewItemAddPanel: {fileID: 105185576}
-  NewItemAddText: {fileID: 338828011}
-  ItemNameText: {fileID: 2132325947}
-  ItemInfoText: {fileID: 408756027}
-  ip: {fileID: 1944911313}
 --- !u!4 &1628166734
 Transform:
   m_ObjectHideFlags: 0
