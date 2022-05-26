@@ -2110,9 +2110,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 310522904}
-  NewItemAddText: {fileID: 0}
+  ip: {fileID: 0}
+  NowState: {fileID: 346849869}
+  NowLocate: {fileID: 0}
   DoorLockPanel: {fileID: 1237763417}
-  DoorLock: {fileID: 0}
 --- !u!61 &450823199
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2213,7 +2214,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 450823197}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e8f9ff6b806732478a8c5926b0c3924, type: 3}
+  m_Script: {fileID: 11500000, guid: 9656840464dc9bb4c9cfb8ea71158bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   csv_FileName: scrpt_5F_startroom
@@ -2226,16 +2227,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 450823197}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91a40bc78072c8c46a55d82e67968cfa, type: 3}
+  m_Script: {fileID: 11500000, guid: 493e80cc4c5b0e94383c18313af9c1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  go_DialogueBar: {fileID: 0}
-  go_DialogueNameBar: {fileID: 0}
-  Char_sprite: {fileID: 0}
-  BG_light: {fileID: 0}
-  txt_Dialogue: {fileID: 0}
-  txt_Name: {fileID: 0}
-  textDelay: 0
 --- !u!114 &450823204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2245,13 +2239,241 @@ MonoBehaviour:
   m_GameObject: {fileID: 450823197}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c1b2933a8501a04496a87275f4b05c1, type: 3}
+  m_Script: {fileID: 11500000, guid: fa97c988b9ea9cf4480d3cfad430c957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: 
-    line: {x: 0, y: 0}
-    dialogues: []
+    name: Start_room
+    line: {x: 1, y: 76}
+    dialogues:
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
+    - name: 
+      contexts: []
+      spriteName: []
 --- !u!1 &488366049
 GameObject:
   m_ObjectHideFlags: 0
@@ -2818,7 +3040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tp: {fileID: 450823198}
-  flag: 0
+  inventory: {fileID: 0}
 --- !u!1 &595150910
 GameObject:
   m_ObjectHideFlags: 0
@@ -6153,6 +6375,7 @@ GameObject:
   - component: {fileID: 1459363911}
   - component: {fileID: 1459363910}
   - component: {fileID: 1459363909}
+  - component: {fileID: 1459363907}
   - component: {fileID: 1459363908}
   m_Layer: 5
   m_Name: Script_UI
@@ -6161,6 +6384,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1459363907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1459363906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 550f8e0efb03d3b4fbc086f6f7aacec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  go_DialogueBar: {fileID: 2124719634}
+  go_DialogueNameBar: {fileID: 121626235}
+  Char_sprite: {fileID: 2142843427}
+  BG_light: {fileID: 566910592}
+  txt_Dialogue: {fileID: 1862649058}
+  txt_Name: {fileID: 1675261695}
+  textDelay: 0.1
 --- !u!114 &1459363908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6170,16 +6412,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1459363906}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91a40bc78072c8c46a55d82e67968cfa, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c0d712e86caf374b9c372da329b295e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  go_DialogueBar: {fileID: 2124719634}
-  go_DialogueNameBar: {fileID: 121626235}
-  Char_sprite: {fileID: 0}
-  BG_light: {fileID: 0}
-  txt_Dialogue: {fileID: 1862649058}
-  txt_Name: {fileID: 1675261695}
-  textDelay: 0.03
+  fadeSpeed: 0.3
 --- !u!114 &1459363909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7236,6 +7472,10 @@ MonoBehaviour:
   SettingPanel: {fileID: 3548889484889710871}
   InventoryPanel: {fileID: 1745823966}
   NewItemAddPanel: {fileID: 105185576}
+  NewItemAddText: {fileID: 0}
+  ItemNameText: {fileID: 0}
+  ItemInfoText: {fileID: 0}
+  ip: {fileID: 0}
 --- !u!4 &1628166734
 Transform:
   m_ObjectHideFlags: 0

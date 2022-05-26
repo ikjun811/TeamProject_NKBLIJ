@@ -13,6 +13,10 @@ public class Touch_Panel : MonoBehaviour
     public GameObject NowState; // 사용중 Text
     public GameObject NowLocate;
 
+    DialogueManager theDM;
+
+    InteractionEvent getdialog;
+
     public GameObject DoorLockPanel;
     private void Start()
     {
@@ -20,6 +24,9 @@ public class Touch_Panel : MonoBehaviour
         clikedObj = null;
         um = GameObject.Find("UIManager").GetComponent<UIManager>();
 
+        theDM = FindObjectOfType<DialogueManager>();
+
+        getdialog = FindObjectOfType<InteractionEvent>();
     }
     void Update()
     {
@@ -36,6 +43,7 @@ public class Touch_Panel : MonoBehaviour
                     if (NowState.activeSelf == false)
                     {
                         // 대사 출력
+                        theDM.ShowDialogue(getdialog.GetComponent<InteractionEvent>().GetDialogue(), 36, 41);
                         inventory.AddItem(clikedObj.GetComponent<Item_PickUp>().item);
                         Destroy(clikedObj);
                         um.NewItemAddPanelOn("아이템 획득 : 가스 없는 라이터");
