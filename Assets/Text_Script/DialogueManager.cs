@@ -10,6 +10,9 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] GameObject Char_sprite;
     [SerializeField] GameObject BG_light;
 
+    private UIManager um;
+    public GameObject NowState; // 사용중 Text
+    public GameObject NowLocate;
 
     [SerializeField] Text txt_Dialogue;
     [SerializeField] Text txt_Name;
@@ -30,6 +33,10 @@ public class DialogueManager : MonoBehaviour
 
     void Start()
     {
+        um = GameObject.Find("UIManager").GetComponent<UIManager>();
+
+        NowLocate.GetComponent<Text>().text = "현재 위치 : 시작의 방";
+
         theSpriteManager = FindObjectOfType<SpriteManager>();
     }
 
@@ -56,6 +63,7 @@ public class DialogueManager : MonoBehaviour
                         }
                         else
                         {
+                            Announce();
                             EndDialogue();
                         }
                     }
@@ -66,6 +74,8 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
+        
+
         isDialogue = false;
         contextCount = 0;
         lineCount = 0;
@@ -84,7 +94,7 @@ public class DialogueManager : MonoBehaviour
         dialogues = p_dialogues;
 
         lineCount = start_num -1;
-        End_text_num = end_num;
+        End_text_num = end_num -1;
 
         SettingUI(true);
         StartCoroutine(TypeWriter());
@@ -119,6 +129,24 @@ public class DialogueManager : MonoBehaviour
 
     }
 
+    void Announce()
+    {
+        string t_ReplaceText = dialogues[lineCount].contexts[contextCount];
+
+        if (t_ReplaceText.Equals(""))
+        {
+            return;
+        }
+        else
+        {
+            t_ReplaceText = t_ReplaceText.Replace("'", ",");
+
+            um.NewItemAddPanelOn(t_ReplaceText);
+            NowStateMsgCheck();
+        }
+       
+    }
+
     void SettingUI(bool p_flag)
     {
         go_DialogueBar.SetActive(p_flag);
@@ -142,6 +170,14 @@ public class DialogueManager : MonoBehaviour
         {
             go_DialogueNameBar.SetActive(false);
             Char_sprite.SetActive(false);
+        }
+    }
+
+    void NowStateMsgCheck()
+    {
+        if (NowState.activeSelf == true)
+        {
+            NowState.SetActive(false);
         }
     }
 }

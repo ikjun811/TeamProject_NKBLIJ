@@ -10,6 +10,10 @@ public class ItemPanel : MonoBehaviour
     public GameObject itemPanel;
     public GameObject NowState; // 사용중 Text
 
+    DialogueManager theDM;
+
+    InteractionEvent getdialog;
+
     public Item selecteditem; // 선택한 아이템
     private GameObject slotParent;
     public bool combineFlag;
@@ -17,6 +21,10 @@ public class ItemPanel : MonoBehaviour
     private void Start()
     {
         combineFlag = false;
+
+        theDM = FindObjectOfType<DialogueManager>();
+
+        getdialog = FindObjectOfType<InteractionEvent>();
     }
 
     public void setItem(Item item, GameObject Parent) // 누른 아이템 정보를 받아옴
@@ -66,8 +74,10 @@ public class ItemPanel : MonoBehaviour
         ItemPanelOff(); // 아이템 선택지 패널 닫고
         if ( selecteditem.name == "Box") // Box 분해하면 Gas 얻기
         {
+            StartCoroutine(ScriptStart(31, 38));
             NowState.SetActive(false); // 만약 템사용중->인벤토리->분해할수도 있으니 꺼줌
             Item item = Resources.Load("Item/5F/StartRoom/Gas") as Item; // 새 아이템 프리팹 가져오기
+            
             ivtry.RemoveItem(selecteditem.name);
             ivtry.AddItem(item);
             um.NewItemAddPanelOn("아이템 획득 : 가스");
@@ -84,6 +94,20 @@ public class ItemPanel : MonoBehaviour
         NowState.SetActive(false);
         ItemPanelOff();
         um.ItemNameInfoTextOn("아이템 조합", selecteditem.itemName + "\n+\n조합 대상 아이템 선택");
+    }
+
+    void NowStateMsgCheck()
+    {
+        if (NowState.activeSelf == true)
+        {
+            NowState.SetActive(false);
+        }
+    }
+
+    IEnumerator ScriptStart(int Start_num, int End_num)
+    {
+        theDM.ShowDialogue(getdialog.GetComponent<InteractionEvent>().GetDialogue(), Start_num, End_num);
+        yield return null;
     }
 
 }
