@@ -45,12 +45,12 @@ TagManager:
   - name: BG
     uniqueID: 1996207875
     locked: 0
-  - name: UI
-    uniqueID: 3358116069
-    locked: 0
   - name: BackGround
     uniqueID: 1186156253
     locked: 0
   - name: TouchObj
     uniqueID: 2426051769
+    locked: 0
+  - name: UI
+    uniqueID: 3358116069
     locked: 0
