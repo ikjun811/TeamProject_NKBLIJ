@@ -74,7 +74,7 @@ public class ItemPanel : MonoBehaviour
         ItemPanelOff(); // 아이템 선택지 패널 닫고
         if ( selecteditem.name == "Box") // Box 분해하면 Gas 얻기
         {
-            StartCoroutine(ScriptStart(31, 38));
+            //StartCoroutine(ScriptStart(31, 38));
             NowState.SetActive(false); // 만약 템사용중->인벤토리->분해할수도 있으니 꺼줌
             Item item = Resources.Load("Item/5F/StartRoom/Gas") as Item; // 새 아이템 프리팹 가져오기
             
@@ -104,10 +104,10 @@ public class ItemPanel : MonoBehaviour
         }
     }
 
-    IEnumerator ScriptStart(int Start_num, int End_num)
+    /*IEnumerator ScriptStart(int Start_num, int End_num)
     {
         theDM.ShowDialogue(getdialog.GetComponent<InteractionEvent>().GetDialogue(), Start_num, End_num);
         yield return null;
-    }
+    }*/
 
 }
