@@ -21,6 +21,7 @@ public class DialogueManager : MonoBehaviour
 
     bool isDialogue = false;
     bool isNext = false;
+    bool isSkipActive = false;
 
     [Header("텍스트 딜레이")]
     [SerializeField] float textDelay;
@@ -46,8 +47,9 @@ public class DialogueManager : MonoBehaviour
         {
             if (isNext)
             {
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) || isSkipActive)
                 {
+                    isSkipActive = false;
                     isNext = false;
                     txt_Dialogue.text = "";
                     if (++contextCount < dialogues[lineCount].contexts.Length)
@@ -179,5 +181,18 @@ public class DialogueManager : MonoBehaviour
         {
             NowState.SetActive(false);
         }
+    }
+
+    public void OnClick()
+    {
+        lineCount = End_text_num - 1 ;
+        contextCount = 0;
+
+        string t_ReplaceText = dialogues[lineCount].contexts[contextCount];
+        t_ReplaceText = t_ReplaceText.Replace("'", ",");
+
+        isSkipActive = true;
+        isNext = true;
+
     }
 }
