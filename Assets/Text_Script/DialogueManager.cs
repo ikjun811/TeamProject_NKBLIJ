@@ -49,8 +49,9 @@ public class DialogueManager : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0) || isSkipActive)
                 {
-                    isSkipActive = false;
                     isNext = false;
+                    isSkipActive = false;
+
                     txt_Dialogue.text = "";
                     if (++contextCount < dialogues[lineCount].contexts.Length)
                     {
@@ -66,6 +67,7 @@ public class DialogueManager : MonoBehaviour
                         else
                         {
                             Announce();
+
                             EndDialogue();
                         }
                     }
@@ -82,6 +84,7 @@ public class DialogueManager : MonoBehaviour
         contextCount = 0;
         lineCount = 0;
         dialogues = null;
+        isSkipActive = false;
         isNext = false;
         SettingUI(false);
     }
@@ -186,13 +189,13 @@ public class DialogueManager : MonoBehaviour
     public void OnClick()
     {
         lineCount = End_text_num - 1 ;
-        contextCount = 0;
+        //contextCount = 0;
 
-        string t_ReplaceText = dialogues[lineCount].contexts[contextCount];
-        t_ReplaceText = t_ReplaceText.Replace("'", ",");
+
+        //string t_ReplaceText = dialogues[lineCount].contexts[contextCount];
+       // t_ReplaceText = t_ReplaceText.Replace("'", ",");
 
         isSkipActive = true;
-        isNext = true;
-
+        //isNext = true;
     }
 }

@@ -2295,7 +2295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     name: Start_room
-    line: {x: 1, y: 76}
+    line: {x: 1, y: 88}
     dialogues:
     - name: 
       contexts: []
