@@ -14,6 +14,7 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
     private GameObject clikedObj;
 
     public GameObject DoorLockPanel;
+    private bool flag_doll, flag_candle, flag_Aphoto, flag_Cphoto, flag_CCTV;
 
     private void Start()
     {
@@ -26,8 +27,11 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
         NowLocate.GetComponent<Text>().text = "현재 위치 : 추모의 방";
         clikedObj = null;
 
-        //um = GameObject.Find("UIManager").GetComponent<UIManager>();
-        //inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
+        flag_doll = false;
+        flag_candle = false;
+        flag_Aphoto = false;
+        flag_Cphoto = false;
+        flag_CCTV = false;
 
     }
     void Update()
@@ -43,16 +47,17 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                 if (clikedObj.name == "voodooDoll")
                 {
                     Debug.Log(clikedObj.name);
-                    if (NowState.activeSelf == false) // 조건 추가 : 복도의 지문 인식기 다녀오면 습득
+                    if (NowState.activeSelf == false) // 사용중x + 복도다녀오기 전
                     {
-                        // 대사 출력 = 아무래도 이 인형이 단서다. 인형에 지문이 있다...
-                        inventory.AddItem(clikedObj.GetComponent<Item_PickUp>().item);
-                        Destroy(clikedObj);
-                        um.NewItemAddPanelOn("아이템 획득 : 부두 인형");
-                        NowStateMsgCheck();
+                        // 부두인형이미지 버튼화 = 누르면 대사 출력
+                        // 대사 출력 : 불길한 느낌의 인형이다..., 집어들기 싫다... 
+                        flag_doll = true;
                     }
-                    // else if (NowState.active == false ) 복도 다녀오기 전 -> 대사 출력 = 불길한 느낌의 인형이다. 집어들기조차 싫다...
-                    else // 아이템 사용 중인 상태 
+                    //else if (NowState.active == false ) 복도 다녀온 후 : 아이템 습득 가능
+                    //inventory.AddItem(clikedObj.GetComponent<Item_PickUp>().item);
+                    //Destroy(clikedObj);
+                    //um.NewItemAddPanelOn("아이템 획득 : 부두 인형");
+                    else // 인형에 아이템 사용하려 할 경우
                     {
                         um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
                         return;
@@ -65,10 +70,9 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                     if (NowState.activeSelf == false)
                     {
                         // 대사 출력 = 촛불이네요... 방금 전에 켠듯한 -> 범인은 가까이 있었다
-                        // 단서 아이템 추가 -> 추후 구현 예정?
-                        NowStateMsgCheck();
+                        flag_candle = true;
                     }
-                    else
+                    else // 촛불에 아이템 사용하려 할 경우
                     {
                         um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
                     }
@@ -77,7 +81,12 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                 else if (clikedObj.name == "PhotoChild") // 여자 아이 사진
                 {
                     Debug.Log(clikedObj.name);
-                    if (NowState.activeSelf == true)
+                    if (NowState.activeSelf == false)
+                    {
+                        // 대사 출력 : 여자 아이와 알 수 없는 인물의 사진이다...
+                        flag_Cphoto = true;
+                    }
+                    else // 사진에 아이템 사용 시.
                     {
                         um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
                     }
@@ -86,33 +95,43 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                 else if (clikedObj.name == "PhotoAdult")
                 {
                     Debug.Log(clikedObj.name);
-                    if (NowState.activeSelf == true)
+                    if (NowState.activeSelf == false)
+                    {
+                        // 대사 출력 : 영정 사진~~~
+                        flag_Aphoto = true;
+                    }
+                    else // 사진에 아이템 사용 시.
                     {
                         um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
                     }
-                    // 대사 출력
                     NowStateMsgCheck();
                 }
                 else if (clikedObj.name == "CCTV")
                 {
                     Debug.Log(clikedObj.name);
-
-                    if (NowState.activeSelf == true)
+                    if (NowState.activeSelf == false)
+                    {
+                        // 대사 출력 : CCTV ~~~
+                        flag_Cphoto = true;
+                    }
+                    else // cctv에 아이템 사용 시.
                     {
                         um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
                     }
-                    // 대사 출력
                     NowStateMsgCheck();
                 }
-                else if (clikedObj.name == "CorriderDoor")
+                else if (clikedObj.name == "CorriderDoor") // 조건 제어 필요
                 {
                     Debug.Log(clikedObj.name);
-
-                    if (NowState.activeSelf == true)
+                    if (NowState.activeSelf == false)
+                    {
+                        // 대사 출력 :
+                        flag_Cphoto = true;
+                    }
+                    else // cctv에 아이템 사용 시.
                     {
                         um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
                     }
-                    // 대사 출력
                     NowStateMsgCheck();
                 }
                 else if (clikedObj.name == "StartRoomDoor")
