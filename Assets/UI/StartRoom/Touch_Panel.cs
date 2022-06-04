@@ -81,6 +81,7 @@ public class Touch_Panel : MonoBehaviour
                     string tempItemName = ip.getItem();
                     if (tempItemName == "Lighter_F" && NowState.activeSelf == true)
                     {  // 조건 충족 시, 실행
+                        StartCoroutine(ScriptStart(39, 45));
                         DoorLockPanelOn();
                     }
                     else if (tempItemName != "Lighter_F" && NowState.activeSelf == true)
@@ -109,9 +110,10 @@ public class Touch_Panel : MonoBehaviour
                 {
                     if (NowState.activeSelf == true)
                     {
-                        StartCoroutine(ScriptStart(83, 88));
+                        StartCoroutine(ScriptStart(81, 81));
                         //um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
                     }
+                    StartCoroutine(ScriptStart(83, 88));
                     // 대사 출력
                     NowStateMsgCheck();
                 }
