@@ -8,24 +8,24 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
 {
     public UIManager um;
     public Inventory inventory;
-    public ItemPanel ip; // itemPanel ¿¡ ºÙÀº ½ºÅ©¸³Æ® °¡Á®¿È
-    public GameObject NowState; // »ç¿ëÁß Text
+    public GameObject ip;
+    public GameObject NowState;
     public GameObject NowLocate;
     public GameObject Canvas;
     private GameObject clikedObj;
 
     public GameObject DoorLockPanel;
-    private bool flag_doll, flag_candle, flag_Aphoto, flag_Cphoto, flag_CCTV;
+    private bool flag_doll, flag_candle, flag_Aphoto, flag_Cphoto, flag_CCTV, flag_Hammer;
 
     private void Start()
     {
         um = GameObject.FindObjectOfType<UIManager>();
         inventory = GameObject.FindObjectOfType<Inventory>();
-        ip = GameObject.FindObjectOfType<ItemPanel>();
+        ip = GameObject.Find("Inventory").transform.Find("InventoryPanel").transform.Find("ItemPanel").gameObject;
         NowState = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
         NowLocate = GameObject.Find("NowLocateText");
 
-        NowLocate.GetComponent<Text>().text = "ÇöÀç À§Ä¡ : Ãß¸ğÀÇ ¹æ";
+        NowLocate.GetComponent<Text>().text = "í˜„ì¬ ìœ„ì¹˜ : ì¶”ëª¨ì˜ ë°©";
         clikedObj = null;
 
         flag_doll = false;
@@ -33,6 +33,11 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
         flag_CCTV = false;
         flag_candle = false;
         flag_Aphoto = false;
+        flag_Hammer = false;
+        if (inventory.FindItem("voodooDoll"))
+        {
+            GameObject.Find("voodooDoll").SetActive(false);
+        }
     }
     void Update()
     {
@@ -47,61 +52,65 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                 if (clikedObj.name == "voodooDoll")
                 {
                     Debug.Log(clikedObj.name);
-                    if (NowState.activeSelf == false) // »ç¿ëÁßx + º¹µµ´Ù³à¿À±â Àü : º¯¼ö Ãß°¡
+                    if (inventory.FindItem("Hammer") && NowState.activeSelf == false) // í•´ë¨¸ê°€ ìˆì„ ë•Œ = ë³µë„ ë‹¤ë…€ì˜´
                     {
-                        // ´ë»ç Ãâ·Â = ºÒ±æÇÑ ±â¿îÀÇ ÀÎÇü...
-                        flag_doll = true;
+                        inventory.AddItem(clikedObj.GetComponent<Item_PickUp>().item);
+                        Destroy(clikedObj);
+                        um.NewItemAddPanelOn("ì•„ì´í…œ íšë“ : ë¶€ë‘ ì¸í˜•");
+                        flag_Hammer = true;
+                        Debug.Log(2);
                     }
-                    // else if (NowState.active == false ) // »ç¿ëÁß x + º¹µµ ´Ù³à¿Â ÈÄ : ¾ÆÀÌÅÛ È¹µæ
-                    // inventory.AddItem(clikedObj.GetComponent<Item_PickUp>().item);
-                    // Destroy(clikedObj);
-                    // um.NewItemAddPanelOn("¾ÆÀÌÅÛ È¹µæ : ºÎµÎ ÀÎÇü");
-                    else // ¾ÆÀÌÅÛ »ç¿ë ÁßÀÎ »óÅÂ 
+                    else if(NowState.activeSelf == false)
                     {
-                        um.NewItemAddPanelOn("»ç¿ëÇÒ ¼ö ¾ø´Â °Í °°´Ù."); // UI ´ë½Å, ´ë»ç Ã³¸® ÇÊ¿ä
+                        flag_doll = true;
+                        Debug.Log(1);
+                    }
+                    else
+                    {
+                        um.NewItemAddPanelOn("ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ê²ƒ ê°™ë‹¤."); // ëŒ€í™” ì²˜ë¦¬ í•„ìš”
                         return;
                     }
                     NowStateMsgCheck();
                 }
-                else if (clikedObj.name == "Candle1" || clikedObj.name == "Candle2") // ÃĞºÒ ´­·¶À» ¶§
+                else if (clikedObj.name == "Candle1" || clikedObj.name == "Candle2") 
                 {
                     Debug.Log(clikedObj.name);
                     if (NowState.activeSelf == false)
                     {
-                        // ´ë»ç Ãâ·Â = ÃĞºÒÀÌ³×¿ä... ¹æ±İ Àü¿¡ ÄÒµíÇÑ -> ¹üÀÎÀº °¡±îÀÌ ÀÖ¾ú´Ù
+                        // ëŒ€ì‚¬ ì¶œë ¥ : ì¼œì ¸ìˆëŠ” ì´›ë¶ˆ -> ëˆ„êµ°ê°€ ì™”ë‹¤ ê°„ì§€ ì–¼ë§ˆ ì•ˆëë‹¤.
                         flag_candle = true;
                     }
                     else
                     {
-                        um.NewItemAddPanelOn("»ç¿ëÇÒ ¼ö ¾ø´Â °Í °°´Ù."); // UI ´ë½Å, ´ë»ç Ã³¸® ÇÊ¿ä
+                        um.NewItemAddPanelOn("ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ê²ƒ ê°™ë‹¤."); // ëŒ€í™” ì²˜ë¦¬ í•„ìš”
                     }
                     NowStateMsgCheck();
                 }
-                else if (clikedObj.name == "PhotoChild") // ¿©ÀÚ ¾ÆÀÌ »çÁø
+                else if (clikedObj.name == "PhotoChild") // ì–´ë¦° ì•„ì´ ì‚¬ì§„
                 {
                     Debug.Log(clikedObj.name);
                     if (NowState.activeSelf == false)
                     {
-                        // ´ë»ç Ãâ·Â : ¾î¸° ¾ÆÀÌ¿Í ¾Ë ¼ö ¾ø´Â ÀÎ¹°ÀÇ »çÁøÀÌ´Ù~~~
+                        // ëŒ€ì‚¬ ì¶œë ¥ : ì–´ë¦° ì•„ì´ì™€ ì•Œ ìˆ˜ ì—†ëŠ” ëˆ„êµ°ê°€ì˜ ì‚¬ì§„ì´ë‹¤.
                         flag_Cphoto = true;
                     }
                     else
                     {
-                        um.NewItemAddPanelOn("»ç¿ëÇÒ ¼ö ¾ø´Â °Í °°´Ù."); // UI ´ë½Å, ´ë»ç Ã³¸® ÇÊ¿ä
+                        um.NewItemAddPanelOn("ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ê²ƒ ê°™ë‹¤."); // ëŒ€í™” ì²˜ë¦¬ í•„ìš”
                     }
                     NowStateMsgCheck();
                 }
-                else if (clikedObj.name == "PhotoAdult") // Á¦´Ü »çÁø
+                else if (clikedObj.name == "PhotoAdult") // ì œë‹¨ì— ë†“ì¸ 8ì¸ì˜ ì‚¬ì§„
                 {
                     Debug.Log(clikedObj.name);
                     if (NowState.activeSelf == false)
                     {
-                        // ´ë»ç Ãâ·Â : ¿µÁ¤ »çÁø?
+                        // ëŒ€ì‚¬ ì¶œë ¥ : ì˜ì •ì‚¬ì§„~~~
                         flag_Aphoto = true;
                     }
                     else
                     {
-                        um.NewItemAddPanelOn("»ç¿ëÇÒ ¼ö ¾ø´Â °Í °°´Ù."); // UI ´ë½Å, ´ë»ç Ã³¸® ÇÊ¿ä
+                        um.NewItemAddPanelOn("ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ê²ƒ ê°™ë‹¤."); // ëŒ€í™” ì²˜ë¦¬ í•„ìš”
                     }
                     NowStateMsgCheck();
                 }
@@ -110,12 +119,12 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                     Debug.Log(clikedObj.name);
                     if (NowState.activeSelf == false)
                     {
-                        // ´ë»ç Ãâ·Â : CCTV....
+                        // ëŒ€ì‚¬ ì¶œë ¥ : CCTV....
                         flag_CCTV = true;
                     }
                     else
                     {
-                        um.NewItemAddPanelOn("»ç¿ëÇÒ ¼ö ¾ø´Â °Í °°´Ù."); // UI ´ë½Å, ´ë»ç Ã³¸® ÇÊ¿ä
+                        um.NewItemAddPanelOn("ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ê²ƒ ê°™ë‹¤."); // ëŒ€í™” ì²˜ë¦¬ í•„ìš”
                     }
                     NowStateMsgCheck();
                 }
@@ -124,22 +133,20 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                     Debug.Log(clikedObj.name);
                     if (NowState.activeSelf == false)
                     {
-                        if (flag_Aphoto && flag_candle && flag_CCTV && flag_Cphoto && flag_doll)
-                        { // Á¶°Ç ÃæÁ· -> ´ÙÀ½ ¹æ ³Ñ¾î°¥ ¼ö ÀÖÀ½
-                            // ´ë»ç Ãâ·Â
+                        if ((flag_Aphoto && flag_candle && flag_CCTV && flag_Cphoto && flag_doll)||flag_Hammer)
+                        { // ëª¨ë“  ì˜¤ë¸Œì íŠ¸ ì¡°ì‚¬ ì™„ë£Œ ì‹œ
+                            // ëŒ€ì‚¬ ì¶œë ¥ : ë‹¤ì‹œ í•œ ë²ˆ ë¬¸ì„ ì—´ì–´ë´„ -> ë¬¸ì´ ì—´ë¦¼ -> ì£¼ì‹œí•˜ê³  ìˆë‹¤?
                             SceneManager.LoadScene("5F_Corridor");
                         }
                         else
                         {
-                            // ´ë»ç Ãâ·Â : ¹®ÀÌ Àá°Ü¼­ ¿­¸®Áö ¾Ê´Â´Ù.... ÀÏ´Ù ´Ù¸¥ °Íµé ¸ÕÀú Á¶»çÇÏÀÚ.
-                            Debug.Log("333");
+                            // ëŒ€ì‚¬ ì¶œë ¥ : ì•„ì§ ì¡°ì‚¬í•  ê²Œ ë‚¨ì•„ ìˆë‹¤.
                         }
                     }
-                    else // ¹®¿¡ ¾ÆÀÌÅÛ »ç¿ë ½Ã.
+                    else
                     {
-                        um.NewItemAddPanelOn("»ç¿ëÇÒ ¼ö ¾ø´Â °Í °°´Ù."); // UI ´ë½Å, ´ë»ç Ã³¸® ÇÊ¿ä
+                        um.NewItemAddPanelOn("ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ê²ƒ ê°™ë‹¤."); // ëŒ€í™” ì²˜ë¦¬ í•„ìš”
                     }
-                    // ´ë»ç Ãâ·Â
                     NowStateMsgCheck();
                 }
                 else if (clikedObj.name == "StartRoomDoor")
@@ -147,11 +154,11 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                     Debug.Log(clikedObj.name);
                     if (NowState.activeSelf == false)
                     {
-                        // ´ë»ç Ãâ·Â : µ¹¾Æ°¥ ÀÌÀ¯°¡ ¾ø´Ù...
+                        // ëŒ€ì‚¬ ì¶œë ¥ : ëŒì•„ê°ˆ ì´ìœ ê°€ ì—†ë‹¤.
                     }
-                    else // ¹®¿¡ ¾ÆÀÌÅÛ »ç¿ë ½Ã.
+                    else 
                     {
-                        um.NewItemAddPanelOn("»ç¿ëÇÒ ¼ö ¾ø´Â °Í °°´Ù."); // UI ´ë½Å, ´ë»ç Ã³¸® ÇÊ¿ä
+                        um.NewItemAddPanelOn("ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ê²ƒ ê°™ë‹¤."); // ëŒ€í™” ì²˜ë¦¬ í•„ìš”
                     }
                     NowStateMsgCheck();
                 }

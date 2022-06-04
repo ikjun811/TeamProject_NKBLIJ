@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/5F_CandleRoom.unity
     guid: 469824ca80d3fdc4bbb6cf49b8240ff1
   - enabled: 1
-    path: Assets/Scenes/5F_Corrider.unity
+    path: Assets/Scenes/5F_Corridor.unity
     guid: 43ccfbf247486244e9558c4060da446e
   - enabled: 1
     path: Assets/Scenes/5F_ButtonRoom.unity
