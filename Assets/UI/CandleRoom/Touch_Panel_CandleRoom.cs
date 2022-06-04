@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Touch_Panel_CandleRoom : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
     private GameObject clikedObj;
 
     public GameObject DoorLockPanel;
+    private bool flag_doll, flag_candle, flag_Aphoto, flag_Cphoto, flag_CCTV;
 
     private void Start()
     {
@@ -26,9 +28,11 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
         NowLocate.GetComponent<Text>().text = "현재 위치 : 추모의 방";
         clikedObj = null;
 
-        //um = GameObject.Find("UIManager").GetComponent<UIManager>();
-        //inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
-
+        flag_doll = false;
+        flag_Cphoto = false;
+        flag_CCTV = false;
+        flag_candle = false;
+        flag_Aphoto = false;
     }
     void Update()
     {
@@ -43,15 +47,15 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                 if (clikedObj.name == "voodooDoll")
                 {
                     Debug.Log(clikedObj.name);
-                    if (NowState.activeSelf == false) // 조건 추가 : 복도의 지문 인식기 다녀오면 습득
+                    if (NowState.activeSelf == false) // 사용중x + 복도다녀오기 전 : 변수 추가
                     {
-                        // 대사 출력 = 아무래도 이 인형이 단서다. 인형에 지문이 있다...
-                        inventory.AddItem(clikedObj.GetComponent<Item_PickUp>().item);
-                        Destroy(clikedObj);
-                        um.NewItemAddPanelOn("아이템 획득 : 부두 인형");
-                        NowStateMsgCheck();
+                        // 대사 출력 = 불길한 기운의 인형...
+                        flag_doll = true;
                     }
-                    // else if (NowState.active == false ) 복도 다녀오기 전 -> 대사 출력 = 불길한 느낌의 인형이다. 집어들기조차 싫다...
+                    // else if (NowState.active == false ) // 사용중 x + 복도 다녀온 후 : 아이템 획득
+                    // inventory.AddItem(clikedObj.GetComponent<Item_PickUp>().item);
+                    // Destroy(clikedObj);
+                    // um.NewItemAddPanelOn("아이템 획득 : 부두 인형");
                     else // 아이템 사용 중인 상태 
                     {
                         um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
@@ -65,8 +69,7 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                     if (NowState.activeSelf == false)
                     {
                         // 대사 출력 = 촛불이네요... 방금 전에 켠듯한 -> 범인은 가까이 있었다
-                        // 단서 아이템 추가 -> 추후 구현 예정?
-                        NowStateMsgCheck();
+                        flag_candle = true;
                     }
                     else
                     {
@@ -77,38 +80,62 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                 else if (clikedObj.name == "PhotoChild") // 여자 아이 사진
                 {
                     Debug.Log(clikedObj.name);
-                    if (NowState.activeSelf == true)
+                    if (NowState.activeSelf == false)
+                    {
+                        // 대사 출력 : 어린 아이와 알 수 없는 인물의 사진이다~~~
+                        flag_Cphoto = true;
+                    }
+                    else
                     {
                         um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
                     }
                     NowStateMsgCheck();
                 }
-                else if (clikedObj.name == "PhotoAdult")
+                else if (clikedObj.name == "PhotoAdult") // 제단 사진
                 {
                     Debug.Log(clikedObj.name);
-                    if (NowState.activeSelf == true)
+                    if (NowState.activeSelf == false)
+                    {
+                        // 대사 출력 : 영정 사진?
+                        flag_Aphoto = true;
+                    }
+                    else
                     {
                         um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
                     }
-                    // 대사 출력
                     NowStateMsgCheck();
                 }
-                else if (clikedObj.name == "CCTV")
+                else if (clikedObj.name == "CCTV") // CCTV 
                 {
                     Debug.Log(clikedObj.name);
-
-                    if (NowState.activeSelf == true)
+                    if (NowState.activeSelf == false)
+                    {
+                        // 대사 출력 : CCTV....
+                        flag_CCTV = true;
+                    }
+                    else
                     {
                         um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
                     }
-                    // 대사 출력
                     NowStateMsgCheck();
                 }
                 else if (clikedObj.name == "CorriderDoor")
                 {
                     Debug.Log(clikedObj.name);
-
-                    if (NowState.activeSelf == true)
+                    if (NowState.activeSelf == false)
+                    {
+                        if (flag_Aphoto && flag_candle && flag_CCTV && flag_Cphoto && flag_doll)
+                        { // 조건 충족 -> 다음 방 넘어갈 수 있음
+                            // 대사 출력
+                            SceneManager.LoadScene("5F_Corridor");
+                        }
+                        else
+                        {
+                            // 대사 출력 : 문이 잠겨서 열리지 않는다.... 일다 다른 것들 먼저 조사하자.
+                            Debug.Log("333");
+                        }
+                    }
+                    else // 문에 아이템 사용 시.
                     {
                         um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
                     }
@@ -118,14 +145,13 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                 else if (clikedObj.name == "StartRoomDoor")
                 {
                     Debug.Log(clikedObj.name);
-
-                    if (NowState.activeSelf == true)
+                    if (NowState.activeSelf == false)
+                    {
+                        // 대사 출력 : 돌아갈 이유가 없다...
+                    }
+                    else // 문에 아이템 사용 시.
                     {
                         um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
-                    }
-                    else
-                    {
-                        // 대사 출력
                     }
                     NowStateMsgCheck();
                 }
