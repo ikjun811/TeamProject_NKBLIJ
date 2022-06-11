@@ -74,7 +74,14 @@ public class UIManager : MonoBehaviour
     }
     public void NewItemAddPanelOff()
     {
-        IsUIOn = false;
+        if (InventoryPanel.activeSelf == true)
+        {
+            IsUIOn = true;
+        }
+        else
+        {
+            IsUIOn = false;
+        }
         NewItemAddPanel.SetActive(false);
     }
     public void ItemNameInfoTextOn(string name, string info)
