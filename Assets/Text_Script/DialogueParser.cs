@@ -21,11 +21,14 @@ public class DialogueParser : MonoBehaviour
 
             List<string> contextList = new List<string>();
             List<string> spriteList = new List<string>();
+            List<string> slideList = new List<string>();
 
             do
             {
                 contextList.Add(row[2]);
                 spriteList.Add(row[3]);
+                slideList.Add(row[4]);
+
                 if (++i < data.Length)
                 {
                     row = data[i].Split(new char[] { ',' });
@@ -37,6 +40,7 @@ public class DialogueParser : MonoBehaviour
 
             dialogue.contexts = contextList.ToArray();
             dialogue.spriteName = spriteList.ToArray();
+            dialogue.slideName = slideList.ToArray();
             dialogueList.Add(dialogue);
 
      

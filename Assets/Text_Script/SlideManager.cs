@@ -29,7 +29,7 @@ public class SlideManager : MonoBehaviour
 
     public IEnumerator DisappearSlide()
     {
-        anim.Play("Appear");
+        anim.Play("Disappear");
         yield return new WaitForSeconds(0.5f);
         img_SlideCG.gameObject.SetActive(false);
 

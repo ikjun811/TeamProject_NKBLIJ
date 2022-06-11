@@ -31,14 +31,21 @@ public class DialogueManager : MonoBehaviour
     int End_text_num = 0;
 
     SpriteManager theSpriteManager;
+    SlideManager theSlideManager;
 
     void Start()
     {
         um = GameObject.Find("UIManager").GetComponent<UIManager>();
 
+        NowState = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
+        NowLocate = GameObject.Find("NowLocateText");
+
         NowLocate.GetComponent<Text>().text = "현재 위치 : 시작의 방";
 
         theSpriteManager = FindObjectOfType<SpriteManager>();
+        theSlideManager = FindObjectOfType<SlideManager>();
+
+
     }
 
     void Update()
@@ -113,10 +120,27 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    void SlideOnOff()
+    {
+        if (dialogues[lineCount].slideName[contextCount] == "" || isSkipActive)
+        {
+            return;
+        }
+        else if (dialogues[lineCount].slideName[contextCount] == "0")
+        {
+            StartCoroutine(theSlideManager.DisappearSlide());
+        }
+        else if (dialogues[lineCount].slideName[contextCount] != "")
+        {
+            StartCoroutine(theSlideManager.AppearSlide(dialogues[lineCount].slideName[contextCount]));
+        }
+    }
+
     IEnumerator TypeWriter()
     {
         SettingUI(true);
         ChangeSprite();
+        SlideOnOff();
 
         string t_ReplaceText = dialogues[lineCount].contexts[contextCount];
 
@@ -188,12 +212,13 @@ public class DialogueManager : MonoBehaviour
 
     public void OnClick()
     {
+        StartCoroutine(theSlideManager.DisappearSlide());
         lineCount = End_text_num - 1 ;
         //contextCount = 0;
 
 
         //string t_ReplaceText = dialogues[lineCount].contexts[contextCount];
-       // t_ReplaceText = t_ReplaceText.Replace("'", ",");
+        // t_ReplaceText = t_ReplaceText.Replace("'", ",");
 
         isSkipActive = true;
         //isNext = true;

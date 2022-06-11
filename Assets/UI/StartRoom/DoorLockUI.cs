@@ -9,6 +9,12 @@ public class DoorLockUI : MonoBehaviour
     public Touch_Panel tp;
     public Inventory inventory;
 
+
+    DialogueManager theDM;
+
+    InteractionEvent getdialog;
+
+
     int temp1;
     int temp2; 
     int temp3;
@@ -23,6 +29,10 @@ public class DoorLockUI : MonoBehaviour
         temp3 = 99;
         temp4 = 99;
         suc_flag = true;
+
+        theDM = FindObjectOfType<DialogueManager>();
+
+        getdialog = FindObjectOfType<InteractionEvent>();
     }
 
     private void OnEnable()
@@ -119,9 +129,10 @@ public class DoorLockUI : MonoBehaviour
             {
                 if(temp1 == 0 && temp2 == 1 && temp3 == 1 && temp4 == 5)
                 {
-                    inventory.RemoveItem("Lighter_F"); // 나중에 변경
+                    //inventory.RemoveItem("Lighter_F"); // 나중에 변경
                     tp.DoorLockPanelOff();
                     // 대사 출력
+                    StartCoroutine(ScriptStart(73, 79));
                     SceneManager.LoadScene("5F_CandleRoom");
                 }
                 else
@@ -130,6 +141,12 @@ public class DoorLockUI : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator ScriptStart(int Start_num, int End_num)
+    {
+        theDM.ShowDialogue(getdialog.GetComponent<InteractionEvent>().GetDialogue(), Start_num, End_num);
+        yield return null;
     }
 
 }

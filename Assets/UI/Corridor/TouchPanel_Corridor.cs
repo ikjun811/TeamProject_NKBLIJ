@@ -15,6 +15,9 @@ public class TouchPanel_Corridor : MonoBehaviour
     public GameObject Canvas;
     private GameObject clikedObj;
 
+    DialogueManager theDM;
+    InteractionEvent getdialog;
+
     public GameObject DoorLockPanel;
     private bool flag_light, flag_LockedDoor, flag_ButtonRoomDoor, flag_FingerPrintReader;
     private bool flag_Hammer, flag_voodooDoll;
@@ -41,6 +44,10 @@ public class TouchPanel_Corridor : MonoBehaviour
             GameObject.Find("Hammer").SetActive(false);
             flag_Hammer = true;
         }
+
+        theDM = FindObjectOfType<DialogueManager>();
+
+        getdialog = FindObjectOfType<InteractionEvent>();
     }
     void Update()
     {
@@ -57,12 +64,12 @@ public class TouchPanel_Corridor : MonoBehaviour
                     Debug.Log(clikedObj.name);
                     if (NowState.activeSelf == false) // 라이트 조사
                     {
-                        // 대사 출력 = 낡은 건물 분위기와 어울리지 않는 새 것 같은 형광등이다...
+                        StartCoroutine(ScriptStart(1, 6)); // 대사 출력 = 낡은 건물 분위기와 어울리지 않는 새 것 같은 형광등이다...
                         flag_light = true;
                     }
                     else // 아이템 사용 중인 상태 
                     {
-                        um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
+                        StartCoroutine(ScriptStart(50, 50)); // 사용불가
                         return;
                     }
                     NowStateMsgCheck();
@@ -72,12 +79,12 @@ public class TouchPanel_Corridor : MonoBehaviour
                     Debug.Log(clikedObj.name);
                     if (NowState.activeSelf == false)
                     {
-                        // 대사 출력 : 자동문인 것 같다. 문 옆에 어떤 장치가 있는 것 같은데..
+                        StartCoroutine(ScriptStart(7, 12)); // 대사 출력 : 자동문인 것 같다. 문 옆에 어떤 장치가 있는 것 같은데..
                         flag_ButtonRoomDoor = true;
                     }
                     else
                     {
-                        um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
+                        StartCoroutine(ScriptStart(50, 50)); // 사용불가
                     }
                     NowStateMsgCheck();
                 }
@@ -86,7 +93,7 @@ public class TouchPanel_Corridor : MonoBehaviour
                     Debug.Log(clikedObj.name);
                     if (NowState.activeSelf == false)
                     {
-                        // 대사 출력 : 지문 인식기이다. 우리 모두 손가락을 올려 보았지만 작동하지 않았다...
+                        StartCoroutine(ScriptStart(13, 25)); // 대사 출력 : 지문 인식기이다. 우리 모두 손가락을 올려 보았지만 작동하지 않았다...
                         flag_FingerPrintReader = true;
                     }
                     else
@@ -94,12 +101,12 @@ public class TouchPanel_Corridor : MonoBehaviour
                         string tempItemName = itempanel.getItem();
                         if (tempItemName == "voodooDoll")
                         {
-                            // 대사 출력 : 인형의 지문을 입력하자 문이 열림
+                            StartCoroutine(ScriptStart(26, 28)); // 대사 출력 : 인형의 지문을 입력하자 문이 열림
                             SceneManager.LoadScene("5F_ButtonRoom");
                         }
                         else
                         {
-                            um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
+                            StartCoroutine(ScriptStart(50, 50)); // 사용불가
                         }
                     }
                     NowStateMsgCheck();
@@ -109,15 +116,15 @@ public class TouchPanel_Corridor : MonoBehaviour
                     Debug.Log(clikedObj.name);
                     if (NowState.activeSelf == false)
                     {
-                        // 대사 출력 : 망치네요. 챙겨두면 쓸모가 있을 것 같아요....
+                        StartCoroutine(ScriptStart(30, 34)); //대사 출력 : 망치네요. 챙겨두면 쓸모가 있을 것 같아요....
                         inventory.AddItem(clikedObj.GetComponent<Item_PickUp>().item);
                         Destroy(clikedObj);
-                        um.NewItemAddPanelOn("아이템 획득 : 망치");
+                        //um.NewItemAddPanelOn("아이템 획득 : 망치");
                         flag_Hammer = true;
                     }
                     else
                     {
-                        um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
+                        StartCoroutine(ScriptStart(50, 50)); // 사용불가
                     }
                     NowStateMsgCheck();
                 }
@@ -126,20 +133,20 @@ public class TouchPanel_Corridor : MonoBehaviour
                     Debug.Log(clikedObj.name);
                     if (inventory.FindItem("voodooDoll"))
                     {
-                        Debug.Log("대사 출력 : 다시 돌아갈 이유는 없을 것 같다.");
+                        StartCoroutine(ScriptStart(35,37)); // 인형 획득후 돌아갈 이유가 없다
                     }
                     else if (NowState.activeSelf == false && flag_ButtonRoomDoor && flag_FingerPrintReader && flag_light && flag_LockedDoor && flag_Hammer)
                     {
-                        // 대사 출력 : (고찰) 조사할 수 있는 건 다 봤다. 이전 방으로 돌아갈까. 아까의 인형이 신경 쓰인다.....
+                        StartCoroutine(ScriptStart(38,38)); // 대사 출력 : (고찰) 조사할 수 있는 건 다 봤다. 이전 방으로 돌아갈까. 아까의 인형이 신경 쓰인다.....
                         SceneManager.LoadScene("5F_CandleRoom");
                     }
                     else if (NowState.activeSelf == false)
                     {
-                        // 대사 출력 : 지금은 돌아갈 이유가 없는 것 같다.
+                        StartCoroutine(ScriptStart(52, 52)); // 대사 출력 : 지금은 돌아갈 이유가 없는 것 같다.
                     }
                     else
                     {
-                        um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
+                        StartCoroutine(ScriptStart(50, 50)); // 사용불가
                     }
                     NowStateMsgCheck();
                 }
@@ -148,7 +155,7 @@ public class TouchPanel_Corridor : MonoBehaviour
                     Debug.Log(clikedObj.name);
                     if (NowState.activeSelf == false)
                     {
-                        // 대사 출력 : 아래층으로 내려갈 수 있는 것 같은 문이다. 지금은 잠겨있어 열 수 없다.
+                        StartCoroutine(ScriptStart(40, 46)); // 대사 출력 : 아래층으로 내려갈 수 있는 것 같은 문이다. 지금은 잠겨있어 열 수 없다.
                         flag_LockedDoor = true;
                     }
                     else
@@ -157,12 +164,12 @@ public class TouchPanel_Corridor : MonoBehaviour
                         Debug.Log(tempItemName);
                         if (tempItemName == "5F_Key")
                         {
-                            //  대사 출력 : 기분 나쁜 찢어지는 소리와 함께 문이 열렸다...
+                            StartCoroutine(ScriptStart(47,48)); // 사용불가 //  대사 출력 : 기분 나쁜 찢어지는 소리와 함께 문이 열렸다...
                             SceneManager.LoadScene("4F");
                         }
                         else
                         {
-                            um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
+                            StartCoroutine(ScriptStart(50, 50)); // 사용불가
                         }
                     }
                     NowStateMsgCheck();
@@ -186,6 +193,12 @@ public class TouchPanel_Corridor : MonoBehaviour
         {
             NowState.SetActive(false);
         }
+    }
+
+    IEnumerator ScriptStart(int Start_num, int End_num)
+    {
+        theDM.ShowDialogue(getdialog.GetComponent<InteractionEvent>().GetDialogue(), Start_num, End_num);
+        yield return null;
     }
 }
 

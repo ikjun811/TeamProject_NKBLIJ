@@ -19,6 +19,8 @@ public class Touch_Panel : MonoBehaviour
 
     public GameObject DoorLockPanel;
 
+    private bool flag_DoorReady;
+
     private void Start()
     {
         NowLocate.GetComponent<Text>().text = "현재 위치 : 시작의 방";
@@ -28,6 +30,8 @@ public class Touch_Panel : MonoBehaviour
         theDM = FindObjectOfType<DialogueManager>();
 
         getdialog = FindObjectOfType<InteractionEvent>();
+
+        flag_DoorReady = false;
     }
     void Update()
     {
@@ -79,10 +83,17 @@ public class Touch_Panel : MonoBehaviour
                 else if (clikedObj.name == "DoorLock")
                 {
                     string tempItemName = ip.getItem();
-                    if (tempItemName == "Lighter_F" && NowState.activeSelf == true)
-                    {  // 조건 충족 시, 실행
-                        StartCoroutine(ScriptStart(39, 45));
+                    if(flag_DoorReady)
+                    {
+                        StartCoroutine(ScriptStart(69, 72));
                         DoorLockPanelOn();
+                    }    
+                    else if (tempItemName == "Lighter_F" && NowState.activeSelf == true)
+                    {  // 조건 충족 시, 실행
+                        StartCoroutine(ScriptStart(58, 68));
+                        flag_DoorReady = true;
+                        inventory.RemoveItem("Lighter_F");
+                        //DoorLockPanelOn();
                     }
                     else if (tempItemName != "Lighter_F" && NowState.activeSelf == true)
                     {  // 조건은 다 만족시켰지만 도어락에 다른 아이템을 사용했을 때

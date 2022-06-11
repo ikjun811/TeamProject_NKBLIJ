@@ -14,6 +14,9 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
     public GameObject Canvas;
     private GameObject clikedObj;
 
+    DialogueManager theDM;
+    InteractionEvent getdialog;
+
     public GameObject DoorLockPanel;
     private bool flag_doll, flag_candle, flag_Aphoto, flag_Cphoto, flag_CCTV, flag_Hammer;
 
@@ -38,6 +41,10 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
         {
             GameObject.Find("voodooDoll").SetActive(false);
         }
+
+        theDM = FindObjectOfType<DialogueManager>();
+
+        getdialog = FindObjectOfType<InteractionEvent>();
     }
     void Update()
     {
@@ -54,20 +61,22 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                     Debug.Log(clikedObj.name);
                     if (inventory.FindItem("Hammer") && NowState.activeSelf == false) // 해머가 있을 때 = 복도 다녀옴
                     {
+                        StartCoroutine(ScriptStart(54, 59)); //대사 : 인형 습득
                         inventory.AddItem(clikedObj.GetComponent<Item_PickUp>().item);
                         Destroy(clikedObj);
-                        um.NewItemAddPanelOn("아이템 획득 : 부두 인형");
+                        //um.NewItemAddPanelOn("아이템 획득 : 부두 인형");
                         flag_Hammer = true;
                         Debug.Log(2);
                     }
                     else if(NowState.activeSelf == false)
                     {
                         flag_doll = true;
-                        Debug.Log(1);
+                        StartCoroutine(ScriptStart(45, 53));  //대사 : 인형 관찰
+                        //Debug.Log(1);
                     }
                     else
                     {
-                        um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // 대화 처리 필요
+                        StartCoroutine(ScriptStart(60, 60)); // 사용불가
                         return;
                     }
                     NowStateMsgCheck();
@@ -77,12 +86,12 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                     Debug.Log(clikedObj.name);
                     if (NowState.activeSelf == false)
                     {
-                        // 대사 출력 : 켜져있는 촛불 -> 누군가 왔다 간지 얼마 안됐다.
+                        StartCoroutine(ScriptStart(33, 37));// 대사 출력 : 켜져있는 촛불 -> 누군가 왔다 간지 얼마 안됐다.
                         flag_candle = true;
                     }
                     else
                     {
-                        um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // 대화 처리 필요
+                        StartCoroutine(ScriptStart(60, 60)); // 사용불가
                     }
                     NowStateMsgCheck();
                 }
@@ -91,12 +100,12 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                     Debug.Log(clikedObj.name);
                     if (NowState.activeSelf == false)
                     {
-                        // 대사 출력 : 어린 아이와 알 수 없는 누군가의 사진이다.
+                        StartCoroutine(ScriptStart(79, 79)); // 대사 출력 : 어린 아이와 알 수 없는 누군가의 사진이다.
                         flag_Cphoto = true;
                     }
                     else
                     {
-                        um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // 대화 처리 필요
+                        StartCoroutine(ScriptStart(60, 60)); // 사용불가
                     }
                     NowStateMsgCheck();
                 }
@@ -105,12 +114,12 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                     Debug.Log(clikedObj.name);
                     if (NowState.activeSelf == false)
                     {
-                        // 대사 출력 : 영정사진~~~
+                        StartCoroutine(ScriptStart(8, 32)); // 사용불가// 대사 출력 : 영정사진~~~
                         flag_Aphoto = true;
                     }
                     else
                     {
-                        um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // 대화 처리 필요
+                        StartCoroutine(ScriptStart(60, 60)); // 사용불가
                     }
                     NowStateMsgCheck();
                 }
@@ -119,12 +128,12 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                     Debug.Log(clikedObj.name);
                     if (NowState.activeSelf == false)
                     {
-                        // 대사 출력 : CCTV....
+                        StartCoroutine(ScriptStart(38, 44)); // 사용불가// 대사 출력 : CCTV....
                         flag_CCTV = true;
                     }
                     else
                     {
-                        um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // 대화 처리 필요
+                        StartCoroutine(ScriptStart(60, 60)); // 사용불가
                     }
                     NowStateMsgCheck();
                 }
@@ -135,17 +144,17 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                     {
                         if ((flag_Aphoto && flag_candle && flag_CCTV && flag_Cphoto && flag_doll)||flag_Hammer)
                         { // 모든 오브젝트 조사 완료 시
-                            // 대사 출력 : 다시 한 번 문을 열어봄 -> 문이 열림 -> 주시하고 있다?
+                            StartCoroutine(ScriptStart(67, 78)); // 대사 출력 : 다시 한 번 문을 열어봄 -> 문이 열림 -> 주시하고 있다?
                             SceneManager.LoadScene("5F_Corridor");
                         }
                         else
                         {
-                            // 대사 출력 : 아직 조사할 게 남아 있다.
+                            StartCoroutine(ScriptStart(60, 60)); // 대사 아직 작성 X  // 대사 출력 : 아직 조사할 게 남아 있다.
                         }
                     }
                     else
                     {
-                        um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // 대화 처리 필요
+                        StartCoroutine(ScriptStart(60, 60)); // 사용불가
                     }
                     NowStateMsgCheck();
                 }
@@ -158,7 +167,7 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                     }
                     else 
                     {
-                        um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // 대화 처리 필요
+                        StartCoroutine(ScriptStart(60, 60)); // 사용불가
                     }
                     NowStateMsgCheck();
                 }
@@ -181,6 +190,12 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
         {
             NowState.SetActive(false);
         }
+    }
+
+    IEnumerator ScriptStart(int Start_num, int End_num)
+    {
+        theDM.ShowDialogue(getdialog.GetComponent<InteractionEvent>().GetDialogue(), Start_num, End_num);
+        yield return null;
     }
 }
 

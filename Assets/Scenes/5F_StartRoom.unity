@@ -2300,231 +2300,307 @@ MonoBehaviour:
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
+      slideName: []
 --- !u!1 &488366049
 GameObject:
   m_ObjectHideFlags: 0
@@ -3263,7 +3339,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 80, y: -47}
+  m_AnchoredPosition: {x: 190, y: -47}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!111 &595236057
@@ -3303,7 +3379,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dd42f6f1ab82d1946955c10658e7266a, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
