@@ -29,4 +29,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/5F_KeyRoom.unity
     guid: 00d16b5ca584b8840b69f462b61a2e39
+  - enabled: 1
+    path: Assets/Scenes/4F.unity
+    guid: d366d05077f4b8b4f955d63aa789393e
+  - enabled: 1
+    path: Assets/Scenes/Fail.unity
+    guid: 0807217e7f363d54497b3cbd7d66b353
   m_configObjects: {}

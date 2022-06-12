@@ -101,6 +101,7 @@ public class TouchPanel_Corridor : MonoBehaviour
                         string tempItemName = itempanel.getItem();
                         if (tempItemName == "voodooDoll")
                         {
+                            inventory.RemoveItem("voodooDoll");
                             StartCoroutine(ScriptStart(26, 28)); // 대사 출력 : 인형의 지문을 입력하자 문이 열림
                             SceneManager.LoadScene("5F_ButtonRoom");
                         }
