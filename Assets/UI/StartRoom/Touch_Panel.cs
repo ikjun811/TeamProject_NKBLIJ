@@ -21,6 +21,8 @@ public class Touch_Panel : MonoBehaviour
 
     private bool flag_DoorReady;
 
+    private bool flag_firstdialogue;
+
     private void Start()
     {
         NowLocate.GetComponent<Text>().text = "현재 위치 : 시작의 방";
@@ -32,9 +34,19 @@ public class Touch_Panel : MonoBehaviour
         getdialog = FindObjectOfType<InteractionEvent>();
 
         flag_DoorReady = false;
+
+        flag_firstdialogue = true; //최초 실행 대사에 쓸 플래그
+
+
     }
     void Update()
     {
+        if (flag_firstdialogue)
+        {
+            flag_firstdialogue = false;
+            //StartCoroutine(ScriptStart(81, 81)); //최초 실행 대사
+            //DialogueManager의 대사 출력 부분이 Update이므로 Start에서 호출하면 오류발생, 플래그 이용하여 1회만 실행
+        }
         if (Input.GetMouseButtonDown(0) && !um.IsUIOn)
         {
             Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
