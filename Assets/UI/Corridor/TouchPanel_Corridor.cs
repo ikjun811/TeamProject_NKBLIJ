@@ -20,7 +20,7 @@ public class TouchPanel_Corridor : MonoBehaviour
 
     public GameObject DoorLockPanel;
     private bool flag_light, flag_LockedDoor, flag_ButtonRoomDoor, flag_FingerPrintReader;
-    private bool flag_Hammer, flag_voodooDoll;
+    private bool flag_Hammer;
 
     private void Start()
     {

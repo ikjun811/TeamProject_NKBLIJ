@@ -27,7 +27,7 @@ public class TouchPanel_KeyRoom : MonoBehaviour
         itempanel = ip.GetComponent<ItemPanel>();
         NowState = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
         NowLocate = GameObject.Find("NowLocateText");
-        NowLocate.GetComponent<Text>().text = "현재 위치 : 버튼의 방";
+        NowLocate.GetComponent<Text>().text = "현재 위치 : 열쇠의 방";
         clikedObj = null;
 
         keyTouchFlag = false;

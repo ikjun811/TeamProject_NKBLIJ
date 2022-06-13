@@ -124,7 +124,18 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                 {
                     if (NowState.activeSelf == false)
                     {
-                        Debug.Log("대사 출력 : 판자를 부수니 안에 기계 장치가 모습을 드러냈다... 무언가를 꽂아야 할 것 같다...");
+                        if (clikedObj.name == "ButtonCaseRed" && flag_redBtn == true)
+                        {
+                            Debug.Log("대사 출력 : 장치에 빨간 버튼이 꽂혀 있다.");
+                        }
+                        else if(clikedObj.name == "ButtonCaseBlue" && flag_blueBtn == true)
+                        {
+                            Debug.Log("대사 출력 : 장치에 파란 버튼이 꽂혀 있다.");
+                        }
+                        else
+                        {
+                            Debug.Log("대사 출력 : 판자를 부수니 안에 기계 장치가 모습을 드러냈다... 무언가를 꽂아야 할 것 같다...");
+                        }
                     }
                     else // 아이템 사용 중인 상태 
                     {
