@@ -21,6 +21,9 @@ public class DoorLockUI : MonoBehaviour
     int temp4;
     int input_count;
     bool suc_flag;
+    bool isNextScene;
+    bool isLastScript;
+
     void Start()
     {
         input_count = 4;
@@ -29,6 +32,8 @@ public class DoorLockUI : MonoBehaviour
         temp3 = 99;
         temp4 = 99;
         suc_flag = true;
+        isNextScene = false;
+        isLastScript = false;
 
         theDM = FindObjectOfType<DialogueManager>();
 
@@ -130,10 +135,13 @@ public class DoorLockUI : MonoBehaviour
                 if(temp1 == 0 && temp2 == 1 && temp3 == 1 && temp4 == 5)
                 {
                     //inventory.RemoveItem("Lighter_F"); // 나중에 변경
+                    //EndScriptStart(39, 45);
                     tp.DoorLockPanelOff();
                     // 대사 출력
-                    StartCoroutine(ScriptStart(73, 79));
                     SceneManager.LoadScene("5F_CandleRoom");
+                    //StartCoroutine(WaitEndScript());
+
+
                 }
                 else
                 {
@@ -141,12 +149,40 @@ public class DoorLockUI : MonoBehaviour
                 }
             }
         }
+        if (isLastScript)
+        {
+            if (theDM.isDialogue == false)
+            {
+                SceneManager.LoadScene("5F_CandleRoom");
+            }
+        }
     }
 
-    IEnumerator ScriptStart(int Start_num, int End_num)
+    void ScriptStart(int Start_num, int End_num)
     {
         theDM.ShowDialogue(getdialog.GetComponent<InteractionEvent>().GetDialogue(), Start_num, End_num);
-        yield return null;
+
+    }
+
+    void EndScriptStart(int Start_num, int End_num)
+    {
+        theDM.ShowDialogue(getdialog.GetComponent<InteractionEvent>().GetDialogue(), Start_num, End_num);
+
+        isLastScript = true;
+        //StartCoroutine(WaitEndScript());
+
+        //SceneManager.LoadScene("5F_CandleRoom");
+        //yield return new WaitWhile(() => theDM.isDialogue);
+        //yield return null;
+    }
+
+
+
+    IEnumerator WaitEndScript()
+    {
+        yield return new WaitWhile(() => theDM.isDialogue);
+        isNextScene = true;
+
     }
 
 }

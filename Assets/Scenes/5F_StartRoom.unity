@@ -2649,6 +2649,54 @@ MonoBehaviour:
       contexts: []
       spriteName: []
       slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
 --- !u!1 &488366049
 GameObject:
   m_ObjectHideFlags: 0
@@ -6694,6 +6742,7 @@ MonoBehaviour:
   NowLocate: {fileID: 1117971192}
   txt_Dialogue: {fileID: 1862649058}
   txt_Name: {fileID: 1675261695}
+  isDialogue: 0
   textDelay: 0.03
 --- !u!114 &1459363908
 MonoBehaviour:

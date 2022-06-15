@@ -19,9 +19,11 @@ public class DialogueManager : MonoBehaviour
 
     Dialogue[] dialogues;
 
-    bool isDialogue = false;
+    public bool isDialogue = false;
     bool isNext = false;
     bool isSkipActive = false;
+
+
 
     [Header("텍스트 딜레이")]
     [SerializeField] float textDelay;
@@ -74,7 +76,6 @@ public class DialogueManager : MonoBehaviour
                         else
                         {
                             Announce();
-
                             EndDialogue();
                         }
                     }
@@ -146,9 +147,10 @@ public class DialogueManager : MonoBehaviour
 
         t_ReplaceText = t_ReplaceText.Replace("'", ",");
 
+        txt_Dialogue.text = "";
 
-        
-        for(int i = 0; i< t_ReplaceText.Length; i++)
+
+        for (int i = 0; i< t_ReplaceText.Length; i++)
         {
             txt_Dialogue.text += t_ReplaceText[i];
             yield return new WaitForSeconds(textDelay);

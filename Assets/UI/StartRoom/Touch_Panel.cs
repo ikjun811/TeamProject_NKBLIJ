@@ -44,7 +44,7 @@ public class Touch_Panel : MonoBehaviour
         if (flag_firstdialogue)
         {
             flag_firstdialogue = false;
-            //StartCoroutine(ScriptStart(81, 81)); //최초 실행 대사
+            StartCoroutine(ScriptStart(81, 81)); //최초 실행 대사
             //DialogueManager의 대사 출력 부분이 Update이므로 Start에서 호출하면 오류발생, 플래그 이용하여 1회만 실행
         }
         if (Input.GetMouseButtonDown(0) && !um.IsUIOn)

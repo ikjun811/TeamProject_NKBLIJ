@@ -20,6 +20,9 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
     public GameObject DoorLockPanel;
     private bool flag_doll, flag_candle, flag_Aphoto, flag_Cphoto, flag_CCTV, flag_Hammer;
 
+    bool isNextScene;
+    bool isLastScript;
+
     private void Start()
     {
         um = GameObject.FindObjectOfType<UIManager>();
@@ -37,6 +40,10 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
         flag_candle = false;
         flag_Aphoto = false;
         flag_Hammer = false;
+
+        isNextScene = false;
+        isLastScript = false;
+
         if (inventory.FindItem("voodooDoll"))
         {
             GameObject.Find("voodooDoll").SetActive(false);
@@ -144,8 +151,8 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                     {
                         if ((flag_Aphoto && flag_candle && flag_CCTV && flag_Cphoto && flag_doll)||flag_Hammer)
                         { // 모든 오브젝트 조사 완료 시
-                            StartCoroutine(ScriptStart(67, 78)); // 대사 출력 : 다시 한 번 문을 열어봄 -> 문이 열림 -> 주시하고 있다?
-                            SceneManager.LoadScene("5F_Corridor");
+                            EndScriptStart(67, 78); // 대사 출력 : 다시 한 번 문을 열어봄 -> 문이 열림 -> 주시하고 있다?
+                            //SceneManager.LoadScene("5F_Corridor");
                         }
                         else
                         {
@@ -173,6 +180,13 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                 }
             }
         }
+        if (isLastScript)
+        {
+            if (theDM.isDialogue == false)
+            {
+                SceneManager.LoadScene("5F_Corridor");
+            }
+        }
     }
     public void DoorLockPanelOn()
     {
@@ -196,6 +210,13 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
     {
         theDM.ShowDialogue(getdialog.GetComponent<InteractionEvent>().GetDialogue(), Start_num, End_num);
         yield return null;
+    }
+
+    void EndScriptStart(int Start_num, int End_num)
+    {
+        theDM.ShowDialogue(getdialog.GetComponent<InteractionEvent>().GetDialogue(), Start_num, End_num);
+
+        isLastScript = true;
     }
 }
 
