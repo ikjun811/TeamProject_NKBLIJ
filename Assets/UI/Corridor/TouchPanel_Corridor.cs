@@ -138,7 +138,7 @@ public class TouchPanel_Corridor : MonoBehaviour
                     }
                     else if (NowState.activeSelf == false && flag_ButtonRoomDoor && flag_FingerPrintReader && flag_light && flag_LockedDoor && flag_Hammer)
                     {
-                        StartCoroutine(ScriptStart(38,38)); // 대사 출력 : (고찰) 조사할 수 있는 건 다 봤다. 이전 방으로 돌아갈까. 아까의 인형이 신경 쓰인다.....
+                        //StartCoroutine(ScriptStart(38,38)); // 대사 출력 : (고찰) 조사할 수 있는 건 다 봤다. 이전 방으로 돌아갈까. 아까의 인형이 신경 쓰인다.....
                         SceneManager.LoadScene("5F_CandleRoom");
                     }
                     else if (NowState.activeSelf == false)

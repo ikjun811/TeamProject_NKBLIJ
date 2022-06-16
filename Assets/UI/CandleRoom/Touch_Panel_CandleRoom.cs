@@ -59,18 +59,18 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
 
 
         
-        if (inventory.FindItem("Hammer"))
+        /*if (inventory.FindItem("Hammer") == false && NowState.activeSelf == false)
         {
-            flag_firstdialogue = false;
-        }
+            ScriptStart(1, 7); //대사 : 제단방 진입
+        }*/
     }
     void Update()
     {
-        if (flag_firstdialogue)
+        /*if (flag_firstdialogue)
         {
             flag_firstdialogue = false;
             ScriptStart(1, 7); //대사 : 제단방 진입
-        }
+        }*/
 
         if (Input.GetMouseButtonDown(0) && !um.IsUIOn)
         {
@@ -166,7 +166,11 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                     Debug.Log(clikedObj.name);
                     if (NowState.activeSelf == false)
                     {
-                        if ((flag_Aphoto && flag_candle && flag_CCTV && flag_Cphoto && flag_doll)||flag_Hammer)
+                        if (inventory.FindItem("voodooDoll"))
+                        {
+                            SceneManager.LoadScene("5F_Corridor");
+                        }
+                        else if ((flag_Aphoto && flag_candle && flag_CCTV && flag_Cphoto && flag_doll)||flag_Hammer)
                         { // 모든 오브젝트 조사 완료 시
                             EndScriptStart(79, 90); // 대사 출력 : 다시 한 번 문을 열어봄 -> 문이 열림 -> 주시하고 있다?
                             //SceneManager.LoadScene("5F_Corridor");
