@@ -91,9 +91,13 @@ public class TouchPanel_KeyRoom : MonoBehaviour
                 }
                 else if (clikedObj.name == "Floor") // 바닥 조사
                 {
-                    if (NowState.activeSelf == false) // 템 사용 중 아닐 때.
+                    if (NowState.activeSelf == false && FloorFlag == false) // 템 사용 중 아닐 때.
                     {
                         Debug.Log("대사 출력 : 바닥을 두드려보았다. 텅 빈 소리? -> 함정인가?");
+                    }
+                    else if (NowState.activeSelf == false && FloorFlag == true)
+                    {
+                        Debug.Log("대사 출력 : 바닥 사라짐 -> 까만 바닥");
                     }
                     else
                     {

@@ -21,6 +21,7 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
     public Sprite blueButtonSprite;
     private bool flag_redBtn;
     private bool flag_blueBtn;
+    private int count_wood;
     
     private void Start()
     {
@@ -37,6 +38,7 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
         blueButtonCase.GetComponent<BoxCollider2D>().enabled = false;
         flag_redBtn = false;
         flag_blueBtn = false;
+        count_wood = 0;
     }
     void Update()
     {
@@ -102,7 +104,13 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                         string tempItemName = itempanel.getItem();
                         if (tempItemName == "Hammer")
                         {
-                            // 대사 출력 : 망치를 휘두르자 나무 판자가 부서졌다~~~
+                            if (count_wood == 0) // 첫째나무
+                            {
+                                Debug.Log("망치 휘두름 -> 판자 부서지고 안에 장치 발견 -> 망치 휘청거림 -> 빨리 남은 하나도 마저 부수자");
+                            }
+                            else // 두번째나무
+                                Debug.Log("남은 거 부숨 -> 망치 부서짐-> 버리자");
+                            count_wood++;
                             Destroy(clikedObj);
                             if (clikedObj.name == "WoodRed")
                             {
@@ -112,6 +120,7 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                             {
                                 blueButtonCase.GetComponent<BoxCollider2D>().enabled = true;
                             }
+                            
                         }
                         else
                         {
@@ -124,7 +133,11 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                 {
                     if (NowState.activeSelf == false)
                     {
-                        if (clikedObj.name == "ButtonCaseRed" && flag_redBtn == true)
+                        if(flag_blueBtn && flag_redBtn)
+                        {
+                            Debug.Log("대사 출력 : 두개의 장치에 모두 버튼을 꽂아 넣었다. 문을 보자");
+                        }
+                        else if (clikedObj.name == "ButtonCaseRed" && flag_redBtn == true)
                         {
                             Debug.Log("대사 출력 : 장치에 빨간 버튼이 꽂혀 있다.");
                         }
