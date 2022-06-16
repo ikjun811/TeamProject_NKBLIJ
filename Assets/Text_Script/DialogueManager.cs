@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+
     [SerializeField] GameObject go_DialogueBar;
     [SerializeField] GameObject go_DialogueNameBar;
     [SerializeField] GameObject Char_sprite;
@@ -38,6 +39,7 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         um = GameObject.Find("UIManager").GetComponent<UIManager>();
+
 
         NowState = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
         NowLocate = GameObject.Find("NowLocateText");
@@ -94,6 +96,7 @@ public class DialogueManager : MonoBehaviour
         dialogues = null;
         isSkipActive = false;
         isNext = false;
+        um.IsUIOn = false;
         SettingUI(false);
     }
 
@@ -110,6 +113,7 @@ public class DialogueManager : MonoBehaviour
         End_text_num = end_num -1;
 
         SettingUI(true);
+        um.IsUIOn = true;
         StartCoroutine(TypeWriter());
     }
 

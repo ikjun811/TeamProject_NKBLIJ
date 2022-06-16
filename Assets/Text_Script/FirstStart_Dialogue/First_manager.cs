@@ -32,7 +32,7 @@ public class First_manager : MonoBehaviour
         if (flag_firstdialogue)
         {
             flag_firstdialogue = false;
-            EndScriptStart(1, 3); //최초 실행 대사
+            EndScriptStart(1, 24); //최초 실행 대사
             //DialogueManager의 대사 출력 부분이 Update이므로 Start에서 호출하면 오류발생, 플래그 이용하여 1회만 실행
         }
         if (isLastScript)

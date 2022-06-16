@@ -135,10 +135,10 @@ public class DoorLockUI : MonoBehaviour
                 if(temp1 == 0 && temp2 == 1 && temp3 == 1 && temp4 == 5)
                 {
                     //inventory.RemoveItem("Lighter_F"); // 나중에 변경
-                    //EndScriptStart(39, 45);
+                    EndScriptStart(61,61);
                     tp.DoorLockPanelOff();
                     // 대사 출력
-                    SceneManager.LoadScene("5F_CandleRoom");
+                    //SceneManager.LoadScene("5F_CandleRoom");
                     //StartCoroutine(WaitEndScript());
 
 

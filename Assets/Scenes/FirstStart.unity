@@ -247,8 +247,92 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     name: first
-    line: {x: 1, y: 3}
+    line: {x: 1, y: 24}
     dialogues:
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
@@ -340,7 +424,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -92.168, y: -117.44}
+  m_AnchoredPosition: {x: -92.168, y: -112.44}
   m_SizeDelta: {x: 84.3361, y: 29.2201}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &501296741
@@ -982,7 +1066,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 97.928, y: -62.801}
+  m_AnchoredPosition: {x: 99.928, y: -67.801}
   m_SizeDelta: {x: 71.1438, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1574322297
@@ -1338,7 +1422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1379,7 +1463,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.75, y: 0.0038033}
+  m_AnchoredPosition: {x: -1.75, y: 0.0038146973}
   m_SizeDelta: {x: 942.4, y: 1912.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2141849238

@@ -23,6 +23,8 @@ public class Touch_Panel : MonoBehaviour
 
     private bool flag_firstdialogue;
 
+    private bool flag_DoorlockTry;
+
     private void Start()
     {
         NowLocate.GetComponent<Text>().text = "현재 위치 : 시작의 방";
@@ -37,14 +39,14 @@ public class Touch_Panel : MonoBehaviour
 
         flag_firstdialogue = true; //최초 실행 대사에 쓸 플래그
 
-
+        flag_DoorlockTry = false;
     }
     void Update()
     {
         if (flag_firstdialogue)
         {
             flag_firstdialogue = false;
-            StartCoroutine(ScriptStart(81, 81)); //최초 실행 대사
+            StartCoroutine(ScriptStart(70, 115)); //최초 실행 대사
             //DialogueManager의 대사 출력 부분이 Update이므로 Start에서 호출하면 오류발생, 플래그 이용하여 1회만 실행
         }
         if (Input.GetMouseButtonDown(0) && !um.IsUIOn)
@@ -60,16 +62,16 @@ public class Touch_Panel : MonoBehaviour
                    
                     if (NowState.activeSelf == false)
                     {
-                        // 대사 출력
+                        StartCoroutine(ScriptStart(39, 44));  // 대사 출력 라이터 획득
                         inventory.AddItem(clikedObj.GetComponent<Item_PickUp>().item);
                         Destroy(clikedObj);
-                        StartCoroutine(ScriptStart(39, 45));
+
                         //um.NewItemAddPanelOn("아이템 획득 : 가스 없는 라이터");
                        // NowStateMsgCheck();
                     }
                     else
                     {
-                        StartCoroutine(ScriptStart(81, 81));
+                        StartCoroutine(ScriptStart(63, 63)); //사용불가 알림
                         //um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
                     }
                     NowStateMsgCheck();
@@ -87,7 +89,7 @@ public class Touch_Panel : MonoBehaviour
                     }
                     else
                     {
-                        StartCoroutine(ScriptStart(81, 81));
+                        StartCoroutine(ScriptStart(63, 63)); //사용불가 알림
                         //um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
                     }
                     NowStateMsgCheck();
@@ -95,26 +97,31 @@ public class Touch_Panel : MonoBehaviour
                 else if (clikedObj.name == "DoorLock")
                 {
                     string tempItemName = ip.getItem();
-                    if(flag_DoorReady)
+                    if(flag_DoorlockTry == true)
                     {
-                        StartCoroutine(ScriptStart(69, 72));
+                        DoorLockPanelOn();
+                    }
+                    else if(flag_DoorReady && flag_DoorlockTry == false)
+                    {
+                        flag_DoorlockTry = true;
+                        StartCoroutine(ScriptStart(57, 60)); //대사 출력 - 비번 입력 시도
                         DoorLockPanelOn();
                     }    
                     else if (tempItemName == "Lighter_F" && NowState.activeSelf == true)
                     {  // 조건 충족 시, 실행
-                        StartCoroutine(ScriptStart(58, 68));
+                        StartCoroutine(ScriptStart(45, 56)); //대사 출력 - 라이터 > 도어락 사용
                         flag_DoorReady = true;
                         inventory.RemoveItem("Lighter_F");
                         //DoorLockPanelOn();
                     }
                     else if (tempItemName != "Lighter_F" && NowState.activeSelf == true)
                     {  // 조건은 다 만족시켰지만 도어락에 다른 아이템을 사용했을 때
-                        StartCoroutine(ScriptStart(81, 81));
+                        StartCoroutine(ScriptStart(63, 63)); //사용불가 알림
                         //um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
                     }
                     else // 조건 미충족
                     {
-                        StartCoroutine(ScriptStart(20, 24));
+                        StartCoroutine(ScriptStart(19, 24)); //대사 출력 - 문 관찰
                         // 일반 대사창 -> 도어록이다 -> 비밀번호를 입력해야 나갈 수 있을 것 같다...
                     }
                     NowStateMsgCheck();
@@ -123,27 +130,28 @@ public class Touch_Panel : MonoBehaviour
                 {
                     if (NowState.activeSelf == true)
                     {
-                        StartCoroutine(ScriptStart(81, 81));
+                        StartCoroutine(ScriptStart(63, 63)); //사용불가 알림
                         //um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
                     }
-                    StartCoroutine(ScriptStart(1, 19));// 대사 출력
+                    StartCoroutine(ScriptStart(1, 18));// 대사 출력
                     NowStateMsgCheck();
                 }
                 else if (clikedObj.name == "Window")
                 {
                     if (NowState.activeSelf == true)
                     {
-                        StartCoroutine(ScriptStart(81, 81));
+                        StartCoroutine(ScriptStart(63, 63)); //사용불가 알림
                         //um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
                     }
-                    StartCoroutine(ScriptStart(83, 88));
+                    StartCoroutine(ScriptStart(65, 69));
                     // 대사 출력
                     NowStateMsgCheck();
                 }
             }
         }
     }
-        public void DoorLockPanelOn()
+
+    public void DoorLockPanelOn()
     {
         um.IsUIOn = true;
         DoorLockPanel.SetActive(true);
