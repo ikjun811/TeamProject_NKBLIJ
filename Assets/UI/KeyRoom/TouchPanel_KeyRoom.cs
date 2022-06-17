@@ -67,6 +67,7 @@ public class TouchPanel_KeyRoom : MonoBehaviour
                     {  // 사망 씬 이전, 1회 경고
                         if (FloorFlag == true)
                         {
+                            isKeyGet = true;
                             EndScriptStart(3, 16); //열쇠 획득 & 복도 귀환
                             Debug.Log("대사 출력 : 꺼진 바닥을 피해 벽에 붙어 조심조심 키를 습득하는 과정 대사");
                             inventory.AddItem(clikedObj.GetComponent<Item_PickUp>().item);
