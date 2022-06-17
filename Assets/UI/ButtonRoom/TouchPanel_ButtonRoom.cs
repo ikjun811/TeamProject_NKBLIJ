@@ -72,7 +72,7 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                     }
                     else if (NowState.activeSelf == false && flag_redBtn && flag_blueBtn)
                     {
-                        ScriptStart(47, 63); //버튼을 동시에 누르며 문이 열림
+                        EndScriptStart(47, 63); //버튼을 동시에 누르며 문이 열림
                         Debug.Log("버튼을 동시에 누르고 문에 힘을 가하자 문이 열렸다...");
                         //SceneManager.LoadScene("5F_KeyRoom");
                     }
@@ -153,7 +153,7 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                         }
                         else
                         {
-                            um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
+                            ScriptStart(1, 1); // 사용불가
                         }
                     }
                     NowStateMsgCheck();
@@ -164,18 +164,22 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                     {
                         if(flag_blueBtn && flag_redBtn)
                         {
+                            ScriptStart(71, 76); // 버튼 두개 모두 들어간 대사
                             Debug.Log("대사 출력 : 두개의 장치에 모두 버튼을 꽂아 넣었다. 문을 보자");
                         }
                         else if (clikedObj.name == "ButtonCaseRed" && flag_redBtn == true)
                         {
+                            ScriptStart(69, 69); //빨간버튼 장착 확인
                             Debug.Log("대사 출력 : 장치에 빨간 버튼이 꽂혀 있다.");
                         }
                         else if(clikedObj.name == "ButtonCaseBlue" && flag_blueBtn == true)
                         {
+                            ScriptStart(70, 70); //파란버튼 장착 확인
                             Debug.Log("대사 출력 : 장치에 파란 버튼이 꽂혀 있다.");
                         }
                         else
                         {
+                            ScriptStart(64, 68); //장치에 무언가 끼울 수 있을것같다.
                             Debug.Log("대사 출력 : 판자를 부수니 안에 기계 장치가 모습을 드러냈다... 무언가를 꽂아야 할 것 같다...");
                         }
                     }
@@ -184,6 +188,7 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                         string tempItemName = itempanel.getItem();
                         if (tempItemName == "RedButton" && clikedObj.name == "ButtonCaseRed")
                         {
+                            ScriptStart(77, 81); //레드버튼 장착
                             Debug.Log("대사 출력 : 찰칵 소리를 내며 빨간 버튼이 맞물려 고정됐다.");
                             inventory.RemoveItem("RedButton");
                             redButtonCase.GetComponent<SpriteRenderer>().enabled = true;
@@ -192,6 +197,7 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                         }
                         else if (tempItemName == "BlueButton" && clikedObj.name == "ButtonCaseBlue")
                         {
+                            ScriptStart(82, 86); //블루버튼 장착
                             Debug.Log("대사 출력 : 찰칵 소리를 내며 파란 버튼이 맞물려 고정됐다.");
                             inventory.RemoveItem("BlueButton");
                             blueButtonCase.GetComponent<SpriteRenderer>().enabled = true;
@@ -200,7 +206,7 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                         }
                         else
                         {
-                            um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
+                            ScriptStart(1, 1); // 사용불가
                         }
                     }
                     NowStateMsgCheck();
@@ -209,11 +215,12 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                 {
                     if (NowState.activeSelf == false)
                     {
+                        ScriptStart(87, 93); //벽면 원 확인
                         Debug.Log("대사 출력 : 슬롯 위에 색이 칠해진 원이 그려져 있다. -> 버튼 색깔 힌트.");
                     }
                     else // 아이템 사용 중인 상태 
                     {
-                        um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
+                        ScriptStart(1, 1); // 사용불가
                     }
                     NowStateMsgCheck();
                 }
@@ -221,11 +228,12 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                 {
                     if (NowState.activeSelf == false)
                     {
+                        ScriptStart(94, 99); //안전모 확인 대사
                         Debug.Log("대사 출력 : 먼지를 듬뿍 뒤집어 쓴 낡아빠진 안전모이다. 별 도움은 안될 것 같다.");
                     }
                     else // 아이템 사용 중인 상태 
                     {
-                        um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
+                        ScriptStart(1, 1); // 사용불가
                     }
                     NowStateMsgCheck();
                 }
@@ -233,11 +241,13 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                 {
                     if (NowState.activeSelf == false)
                     {
+                        ScriptStart(100, 107); // 쓰레기더미 대사
+
                         Debug.Log("대사 출력 : 각종 건설자재들이 쌓여 있다. 죄다 낡고 녹슬어 함부로 만지면 안될 것 같다.");
                     }
                     else // 아이템 사용 중인 상태 
                     {
-                        um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
+                        ScriptStart(1, 1); // 사용불가
                     }
                     NowStateMsgCheck();
                 }
@@ -245,11 +255,12 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                 {
                     if (NowState.activeSelf == false)
                     {
+                        ScriptStart(108, 123); // 사용불가
                         Debug.Log("대사 출력 : 꽤 오래 전 날짜의 신문이 놓여져 있다. -> 건설사 노조 관련 사건");
                     }
                     else // 아이템 사용 중인 상태 
                     {
-                        um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
+                        ScriptStart(1, 1); // 사용불가
                     }
                     NowStateMsgCheck();
                 }
@@ -257,14 +268,22 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                 {
                     if (NowState.activeSelf == false)
                     {
+                        ScriptStart(124, 126); // 사용불가
                         Debug.Log("대사 출력 : 드럼통과 시멘트 포대가 놓여 있다. ... 큰 쓸모는 없는 것 같다.");
                     }
                     else // 아이템 사용 중인 상태 
                     {
-                        um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
+                        ScriptStart(1, 1); // 사용불가
                     }
                     NowStateMsgCheck();
                 }
+            }
+        }
+        if (isLastScript)
+        {
+            if (theDM.isDialogue == false)
+            {
+                SceneManager.LoadScene("5F_KeyRoom");
             }
         }
     }
