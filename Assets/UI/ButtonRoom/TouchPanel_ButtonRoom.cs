@@ -22,7 +22,14 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
     private bool flag_redBtn;
     private bool flag_blueBtn;
     private int count_wood;
-    
+
+    DialogueManager theDM;
+    InteractionEvent getdialog;
+
+    static bool flag_firstdialogue;
+
+    bool isLastScript;
+
     private void Start()
     {
         um = GameObject.FindObjectOfType<UIManager>();
@@ -39,6 +46,12 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
         flag_redBtn = false;
         flag_blueBtn = false;
         count_wood = 0;
+
+        theDM = FindObjectOfType<DialogueManager>();
+
+        getdialog = FindObjectOfType<InteractionEvent>();
+
+        isLastScript = false;
     }
     void Update()
     {
@@ -54,28 +67,31 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                 {
                     if (NowState.activeSelf == false && (!flag_blueBtn || !flag_redBtn))
                     {
+                        ScriptStart(42, 46); // 문 첫 관찰 대사
                         Debug.Log("다음방으로 가는 문이다. 손잡이도 없고... 트릭이 있는 것 같다.");
                     }
                     else if (NowState.activeSelf == false && flag_redBtn && flag_blueBtn)
                     {
+                        ScriptStart(47, 63); //버튼을 동시에 누르며 문이 열림
                         Debug.Log("버튼을 동시에 누르고 문에 힘을 가하자 문이 열렸다...");
-                        SceneManager.LoadScene("5F_KeyRoom");
+                        //SceneManager.LoadScene("5F_KeyRoom");
                     }
                     else // 아이템 사용 중인 상태 
                     {
-                        um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
+                        ScriptStart(1, 1); // 사용불가
                     }
                     NowStateMsgCheck();
                 }
-                else if (clikedObj.name == "CorridorDoor") // 버튼룸 문 조사
+                else if (clikedObj.name == "CorridorDoor") // 복도 문 조사
                 {
                     if (NowState.activeSelf == false)
                     {
+                        ScriptStart(20, 22); // 대사 출력 돌아갈 이유가 없다.
                         Debug.Log("대사 출력 : 돌아갈 이유가 없다.");
                     }
                     else // 아이템 사용 중인 상태 
                     {
-                        um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
+                        ScriptStart(1, 1); // 사용불가
                     }
                     NowStateMsgCheck();
                 }
@@ -83,13 +99,21 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                 {
                     if (NowState.activeSelf == false) // 템 사용 중 아닐 때.
                     {   // 대사는 필요 없을 듯
+                        if (clikedObj.name == "RedButton")
+                        {
+                            ScriptStart(127, 127); //레드버튼 획득
+                        }
+                        else if (clikedObj.name == "BlueButton")
+                        {
+                            ScriptStart(128, 128); //블루버튼 획득
+                        }
                         inventory.AddItem(clikedObj.GetComponent<Item_PickUp>().item);
                         Destroy(clikedObj);
-                        um.NewItemAddPanelOn("아이템 획득 : " + clikedObj.name);
+                        //um.NewItemAddPanelOn("아이템 획득 : " + clikedObj.name);
                     }
                     else
                     {
-                        um.NewItemAddPanelOn("사용할 수 없는 것 같다."); // UI 대신, 대사 처리 필요
+                        ScriptStart(1, 1); // 사용불가
                     }
                     NowStateMsgCheck();
                 }
@@ -97,6 +121,7 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                 {
                     if (NowState.activeSelf == false)
                     {
+                        ScriptStart(23, 28); //나무판자 첫 조사
                         Debug.Log("대사 출력 : 튼튼해보이는 나무판자이다. 안에 장치같은게 숨어있다... 부숴야 할 것 같다.");
                     }
                     else // 아이템 사용 중인 상태 
@@ -106,10 +131,14 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                         {
                             if (count_wood == 0) // 첫째나무
                             {
+                                ScriptStart(29, 35); //첫 나무판자 파괴
                                 Debug.Log("망치 휘두름 -> 판자 부서지고 안에 장치 발견 -> 망치 휘청거림 -> 빨리 남은 하나도 마저 부수자");
                             }
-                            else // 두번째나무
+                            else
+                            {// 두번째나무
+                                ScriptStart(36, 41); //두번째 나무판자 파괴
                                 Debug.Log("남은 거 부숨 -> 망치 부서짐-> 버리자");
+                            }
                             count_wood++;
                             Destroy(clikedObj);
                             if (clikedObj.name == "WoodRed")
@@ -245,6 +274,19 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
         {
             NowState.SetActive(false);
         }
+    }
+
+    void ScriptStart(int Start_num, int End_num) //대사 호출
+    {
+        theDM.ShowDialogue(getdialog.GetComponent<InteractionEvent>().GetDialogue(), Start_num, End_num);
+
+    }
+
+    void EndScriptStart(int Start_num, int End_num) // 씬 이동 이전 대사 호출
+    {
+        theDM.ShowDialogue(getdialog.GetComponent<InteractionEvent>().GetDialogue(), Start_num, End_num);
+
+        isLastScript = true;
     }
 }
 

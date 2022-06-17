@@ -416,7 +416,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 97.928, y: -62.801}
+  m_AnchoredPosition: {x: 99.928, y: -67.801}
   m_SizeDelta: {x: 71.1438, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &636584983
@@ -963,8 +963,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     name: Corridor
-    line: {x: 1, y: 53}
+    line: {x: 1, y: 55}
     dialogues:
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
@@ -2197,7 +2205,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -93.832, y: -117.44}
+  m_AnchoredPosition: {x: -93.832, y: -112.44}
   m_SizeDelta: {x: 84.3361, y: 29.2201}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2086713415

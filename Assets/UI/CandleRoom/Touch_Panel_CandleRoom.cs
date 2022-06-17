@@ -14,11 +14,11 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
     public GameObject Canvas;
     private GameObject clikedObj;
 
-    DialogueManager theDM;
-    InteractionEvent getdialog;
-
     public GameObject DoorLockPanel;
     private bool flag_doll, flag_candle, flag_Aphoto, flag_Cphoto, flag_CCTV, flag_Hammer;
+
+    DialogueManager theDM;
+    InteractionEvent getdialog;
 
     static bool flag_firstdialogue;
 
@@ -57,8 +57,11 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
 
         getdialog = FindObjectOfType<InteractionEvent>();
 
+        if (inventory.FindItem("Hammer"))
+        {
+            flag_firstdialogue = false;
+        }
 
-        
         /*if (inventory.FindItem("Hammer") == false && NowState.activeSelf == false)
         {
             ScriptStart(1, 7); //대사 : 제단방 진입
@@ -66,11 +69,13 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
     }
     void Update()
     {
-        /*if (flag_firstdialogue)
+
+        if (flag_firstdialogue)
         {
             flag_firstdialogue = false;
             ScriptStart(1, 7); //대사 : 제단방 진입
-        }*/
+        }
+        
 
         if (Input.GetMouseButtonDown(0) && !um.IsUIOn)
         {
@@ -85,7 +90,7 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                     Debug.Log(clikedObj.name);
                     if (inventory.FindItem("Hammer") && NowState.activeSelf == false) // 해머가 있을 때 = 복도 다녀옴
                     {
-                        ScriptStart(64, 70); //대사 : 인형 습득
+                        ScriptStart(65, 71); //대사 : 인형 습득
                         inventory.AddItem(clikedObj.GetComponent<Item_PickUp>().item);
                         Destroy(clikedObj);
                         //um.NewItemAddPanelOn("아이템 획득 : 부두 인형");
@@ -95,12 +100,12 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                     else if(NowState.activeSelf == false)
                     {
                         flag_doll = true;
-                        ScriptStart(55, 63);  //대사 : 인형 관찰
+                        ScriptStart(56, 64);  //대사 : 인형 관찰
                         //Debug.Log(1);
                     }
                     else
                     {
-                        ScriptStart(71, 71); // 사용불가
+                        ScriptStart(72, 72); // 사용불가
                         return;
                     }
                     NowStateMsgCheck();
@@ -124,12 +129,12 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                     Debug.Log(clikedObj.name);
                     if (NowState.activeSelf == false)
                     {
-                        ScriptStart(91, 97); // 대사 출력 : 어린 아이와 알 수 없는 누군가의 사진이다.
+                        ScriptStart(92, 98); // 대사 출력 : 어린 아이와 알 수 없는 누군가의 사진이다.
                         flag_Cphoto = true;
                     }
                     else
                     {
-                        ScriptStart(71, 71); // 사용불가
+                        ScriptStart(72, 72); // 사용불가
                     }
                     NowStateMsgCheck();
                 }
@@ -143,7 +148,7 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                     }
                     else
                     {
-                        ScriptStart(71, 71); // 사용불가
+                        ScriptStart(72, 72); // 사용불가
                     }
                     NowStateMsgCheck();
                 }
@@ -152,12 +157,12 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                     Debug.Log(clikedObj.name);
                     if (NowState.activeSelf == false)
                     {
-                        ScriptStart(42, 54); // 대사 출력 : CCTV....
+                        ScriptStart(42, 55); // 대사 출력 : CCTV....
                         flag_CCTV = true;
                     }
                     else
                     {
-                        ScriptStart(71, 71); // 사용불가
+                        ScriptStart(72, 72); // 사용불가
                     }
                     NowStateMsgCheck();
                 }
@@ -166,23 +171,30 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                     Debug.Log(clikedObj.name);
                     if (NowState.activeSelf == false)
                     {
-                        if (inventory.FindItem("voodooDoll"))
+                        if (inventory.FindItem("Hammer") && NowState.activeSelf == false) // 해머가 있을 때 = 복도 다녀옴
                         {
-                            SceneManager.LoadScene("5F_Corridor");
+                            if (inventory.FindItem("voodooDoll"))
+                            {
+                                SceneManager.LoadScene("5F_Corridor");
+                            }
+                            else
+                            {
+                                ScriptStart(104,104);  // 대사 출력 : 아직 조사할 게 남아 있다.
+                            }
                         }
-                        else if ((flag_Aphoto && flag_candle && flag_CCTV && flag_Cphoto && flag_doll)||flag_Hammer)
+                        else if ((flag_Aphoto && flag_candle && flag_CCTV && flag_Cphoto && flag_doll) || flag_Hammer)
                         { // 모든 오브젝트 조사 완료 시
-                            EndScriptStart(79, 90); // 대사 출력 : 다시 한 번 문을 열어봄 -> 문이 열림 -> 주시하고 있다?
+                            EndScriptStart(80, 91); // 대사 출력 : 다시 한 번 문을 열어봄 -> 문이 열림 -> 주시하고 있다?
                             //SceneManager.LoadScene("5F_Corridor");
                         }
                         else
                         {
-                            ScriptStart(73, 78); // 대사 아직 작성 X  // 대사 출력 : 아직 조사할 게 남아 있다.
+                            ScriptStart(74, 79); // 대사 아직 작성 X  // 대사 출력 : 아직 조사할 게 남아 있다.
                         }
                     }
                     else
                     {
-                        ScriptStart(71, 71); // 사용불가
+                        ScriptStart(72, 72); // 사용불가
                     }
                     NowStateMsgCheck();
                 }
@@ -191,16 +203,17 @@ public class Touch_Panel_CandleRoom : MonoBehaviour
                     Debug.Log(clikedObj.name);
                     if (NowState.activeSelf == false)
                     {
-                        ScriptStart(98, 102);  // 대사 출력 : 돌아갈 이유가 없다.
+                        ScriptStart(99, 103);  // 대사 출력 : 돌아갈 이유가 없다.
                     }
                     else 
                     {
-                        ScriptStart(71, 71); // 사용불가
+                        ScriptStart(72, 72); // 사용불가
                     }
                     NowStateMsgCheck();
                 }
             }
         }
+
         if (isLastScript)
         {
             if (theDM.isDialogue == false)

@@ -517,8 +517,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     name: candleroom
-    line: {x: 1, y: 102}
+    line: {x: 1, y: 105}
     dialogues:
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []
