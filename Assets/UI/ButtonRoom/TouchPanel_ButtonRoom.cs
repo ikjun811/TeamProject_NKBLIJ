@@ -263,7 +263,7 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                 {
                     if (NowState.activeSelf == false)
                     {
-                        ScriptStart(108, 123); // 사용불가
+                        ScriptStart(110, 125); // 신문 대사
                         Debug.Log("대사 출력 : 꽤 오래 전 날짜의 신문이 놓여져 있다. -> 건설사 노조 관련 사건");
                     }
                     else // 아이템 사용 중인 상태 
@@ -276,7 +276,7 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                 {
                     if (NowState.activeSelf == false)
                     {
-                        ScriptStart(124, 126); // 사용불가
+                        ScriptStart(126, 128); //드럼통 시멘트 대사
                         Debug.Log("대사 출력 : 드럼통과 시멘트 포대가 놓여 있다. ... 큰 쓸모는 없는 것 같다.");
                     }
                     else // 아이템 사용 중인 상태 
