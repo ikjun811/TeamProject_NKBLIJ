@@ -1775,8 +1775,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     name: ButtonRoom
-    line: {x: 1, y: 129}
+    line: {x: 1, y: 130}
     dialogues:
+    - name: 
+      contexts: []
+      spriteName: []
+      slideName: []
     - name: 
       contexts: []
       spriteName: []

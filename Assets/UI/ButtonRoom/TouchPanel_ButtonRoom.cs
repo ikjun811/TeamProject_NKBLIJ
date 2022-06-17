@@ -51,10 +51,18 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
 
         getdialog = FindObjectOfType<InteractionEvent>();
 
+        flag_firstdialogue = true; //최초 실행 대사에 쓸 플래그
+
         isLastScript = false;
     }
     void Update()
     {
+        if (flag_firstdialogue)
+        {
+            flag_firstdialogue = false;
+            ScriptStart(3, 19); //대사 : 제단방 진입
+        }
+
         if (Input.GetMouseButtonDown(0) && !um.IsUIOn)
         {
             Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -101,11 +109,11 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                     {   // 대사는 필요 없을 듯
                         if (clikedObj.name == "RedButton")
                         {
-                            ScriptStart(127, 127); //레드버튼 획득
+                            um.NewItemAddPanelOn("아이템 획득 : 빨간색 버튼");
                         }
                         else if (clikedObj.name == "BlueButton")
                         {
-                            ScriptStart(128, 128); //블루버튼 획득
+                            um.NewItemAddPanelOn("아이템 획득 : 파란색 버튼");
                         }
                         inventory.AddItem(clikedObj.GetComponent<Item_PickUp>().item);
                         Destroy(clikedObj);
@@ -164,7 +172,7 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                     {
                         if(flag_blueBtn && flag_redBtn)
                         {
-                            ScriptStart(71, 76); // 버튼 두개 모두 들어간 대사
+                            ScriptStart(73, 78); // 버튼 두개 모두 들어간 대사
                             Debug.Log("대사 출력 : 두개의 장치에 모두 버튼을 꽂아 넣었다. 문을 보자");
                         }
                         else if (clikedObj.name == "ButtonCaseRed" && flag_redBtn == true)
@@ -174,7 +182,7 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                         }
                         else if(clikedObj.name == "ButtonCaseBlue" && flag_blueBtn == true)
                         {
-                            ScriptStart(70, 70); //파란버튼 장착 확인
+                            ScriptStart(71, 71); //파란버튼 장착 확인
                             Debug.Log("대사 출력 : 장치에 파란 버튼이 꽂혀 있다.");
                         }
                         else
@@ -188,7 +196,7 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                         string tempItemName = itempanel.getItem();
                         if (tempItemName == "RedButton" && clikedObj.name == "ButtonCaseRed")
                         {
-                            ScriptStart(77, 81); //레드버튼 장착
+                            ScriptStart(79, 83); //레드버튼 장착
                             Debug.Log("대사 출력 : 찰칵 소리를 내며 빨간 버튼이 맞물려 고정됐다.");
                             inventory.RemoveItem("RedButton");
                             redButtonCase.GetComponent<SpriteRenderer>().enabled = true;
@@ -197,7 +205,7 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                         }
                         else if (tempItemName == "BlueButton" && clikedObj.name == "ButtonCaseBlue")
                         {
-                            ScriptStart(82, 86); //블루버튼 장착
+                            ScriptStart(84, 88); //블루버튼 장착
                             Debug.Log("대사 출력 : 찰칵 소리를 내며 파란 버튼이 맞물려 고정됐다.");
                             inventory.RemoveItem("BlueButton");
                             blueButtonCase.GetComponent<SpriteRenderer>().enabled = true;
@@ -215,7 +223,7 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                 {
                     if (NowState.activeSelf == false)
                     {
-                        ScriptStart(87, 93); //벽면 원 확인
+                        ScriptStart(89, 95); //벽면 원 확인
                         Debug.Log("대사 출력 : 슬롯 위에 색이 칠해진 원이 그려져 있다. -> 버튼 색깔 힌트.");
                     }
                     else // 아이템 사용 중인 상태 
@@ -228,7 +236,7 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                 {
                     if (NowState.activeSelf == false)
                     {
-                        ScriptStart(94, 99); //안전모 확인 대사
+                        ScriptStart(96, 101); //안전모 확인 대사
                         Debug.Log("대사 출력 : 먼지를 듬뿍 뒤집어 쓴 낡아빠진 안전모이다. 별 도움은 안될 것 같다.");
                     }
                     else // 아이템 사용 중인 상태 
@@ -241,7 +249,7 @@ public class TouchPanel_ButtonRoom : MonoBehaviour
                 {
                     if (NowState.activeSelf == false)
                     {
-                        ScriptStart(100, 107); // 쓰레기더미 대사
+                        ScriptStart(102, 109); // 쓰레기더미 대사
 
                         Debug.Log("대사 출력 : 각종 건설자재들이 쌓여 있다. 죄다 낡고 녹슬어 함부로 만지면 안될 것 같다.");
                     }
