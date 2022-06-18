@@ -12,13 +12,11 @@ public class TouchPanel_Corridor : MonoBehaviour
     public ItemPanel itempanel;
     public GameObject NowState; // 사용중 Text
     public GameObject NowLocate;
-    public GameObject Canvas;
     private GameObject clikedObj;
 
     DialogueManager theDM;
     InteractionEvent getdialog;
 
-    public GameObject DoorLockPanel;
     private bool flag_light, flag_LockedDoor, flag_ButtonRoomDoor, flag_FingerPrintReader;
     private bool flag_Hammer;
 
@@ -33,6 +31,7 @@ public class TouchPanel_Corridor : MonoBehaviour
         ip = GameObject.Find("Inventory").transform.Find("InventoryPanel").transform.Find("ItemPanel").gameObject;
         NowState = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
         NowLocate = GameObject.Find("NowLocateText");
+
         NowLocate.GetComponent<Text>().text = "현재 위치 : 복도";
         clikedObj = null;
 
@@ -115,7 +114,6 @@ public class TouchPanel_Corridor : MonoBehaviour
                         {
                             inventory.RemoveItem("voodooDoll");
                             EndScriptStartForButtonroom(25, 28); // 대사 출력 : 인형의 지문을 입력하자 문이 열림
-                            //SceneManager.LoadScene("5F_ButtonRoom");
                         }
                         else
                         {
@@ -149,7 +147,6 @@ public class TouchPanel_Corridor : MonoBehaviour
                     }
                     else if (NowState.activeSelf == false && flag_ButtonRoomDoor && flag_FingerPrintReader && flag_light && flag_LockedDoor && flag_Hammer)
                     {
-                        //StartCoroutine(ScriptStart(38,38)); // 대사 출력 : (고찰) 조사할 수 있는 건 다 봤다. 이전 방으로 돌아갈까. 아까의 인형이 신경 쓰인다.....
                         SceneManager.LoadScene("5F_CandleRoom");
                     }
                     else if (NowState.activeSelf == false)
@@ -177,7 +174,6 @@ public class TouchPanel_Corridor : MonoBehaviour
                         if (tempItemName == "5F_Key")
                         {
                             EndScriptStartFor4F(47, 51); //  대사 출력 : 기분 나쁜 찢어지는 소리와 함께 문이 열렸다...
-                            //SceneManager.LoadScene("4F");
                         }
                         else
                         {
@@ -204,16 +200,7 @@ public class TouchPanel_Corridor : MonoBehaviour
             }
         }
     }
-    public void DoorLockPanelOn()
-    {
-        um.IsUIOn = true;
-        DoorLockPanel.SetActive(true);
-    }
-    public void DoorLockPanelOff()
-    {
-        DoorLockPanel.SetActive(false);
-        um.IsUIOn = false;
-    }
+
     void NowStateMsgCheck()
     {
         if (NowState.activeSelf == true)

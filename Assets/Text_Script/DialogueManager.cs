@@ -44,7 +44,7 @@ public class DialogueManager : MonoBehaviour
         NowState = GameObject.Find("Canvas").transform.GetChild(0).gameObject;
         NowLocate = GameObject.Find("NowLocateText");
 
-        NowLocate.GetComponent<Text>().text = "현재 위치 : 시작의 방";
+        //NowLocate.GetComponent<Text>().text = "현재 위치 : 시작의 방";
 
         theSpriteManager = FindObjectOfType<SpriteManager>();
         theSlideManager = FindObjectOfType<SlideManager>();
