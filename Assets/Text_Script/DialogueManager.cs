@@ -150,6 +150,7 @@ public class DialogueManager : MonoBehaviour
         string t_ReplaceText = dialogues[lineCount].contexts[contextCount];
 
         t_ReplaceText = t_ReplaceText.Replace("'", ",");
+        t_ReplaceText = t_ReplaceText.Replace(" ", "\u00A0");
 
         txt_Dialogue.text = "";
 
