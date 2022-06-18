@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+
 public class FailScene : MonoBehaviour
 {
 
-    public void goToTitle()
+    public GameObject NowLocate;
+
+    private void Awake()
     {
-        SceneManager.LoadScene("Title");
+        NowLocate = GameObject.Find("NowLocateText");
+        NowLocate.SetActive(false);
     }
+
 }
