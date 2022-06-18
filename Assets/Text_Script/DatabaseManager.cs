@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DatabaseManager : MonoBehaviour
 {
+
     public static DatabaseManager instance;
 
     [SerializeField] string csv_FileName;
@@ -29,6 +30,7 @@ public class DatabaseManager : MonoBehaviour
 
     public Dialogue[] GetDialogue(int _StartNum, int _EndNum)
     {
+        //대사 필요한 부분을 호출
         List<Dialogue> dialogueList = new List<Dialogue>();
 
         for(int i = 0; i <= _EndNum - _StartNum; i++)

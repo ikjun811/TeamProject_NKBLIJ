@@ -13,6 +13,7 @@ public class SlideManager : MonoBehaviour
 
     public IEnumerator AppearSlide(string p_SlideName)
     {
+        //아이템 슬라이드 등장
         Sprite t_Sprite = Resources.Load<Sprite>("Slide/" + p_SlideName);
         if(t_Sprite != null)
         {
@@ -29,6 +30,7 @@ public class SlideManager : MonoBehaviour
 
     public IEnumerator DisappearSlide()
     {
+        //아이템 슬라이드 퇴장
         anim.Play("Disappear");
         yield return new WaitForSeconds(0.5f);
         img_SlideCG.gameObject.SetActive(false);
@@ -39,6 +41,7 @@ public class SlideManager : MonoBehaviour
 
     public IEnumerator ChangeSlide(string p_SlideName)
     {
+        //아이템 슬라이드 변경
         isFinished = false;
         StartCoroutine(DisappearSlide());
         yield return new WaitUntil(() => isFinished);

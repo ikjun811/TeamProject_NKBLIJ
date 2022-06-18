@@ -8,6 +8,7 @@ public class SpriteManager : MonoBehaviour
 
     bool CheckSameSprite(SpriteRenderer p_SpriteRenderer, Sprite p_Sprite)
     {
+        //캐릭터 이미지 호출 확인
         if(p_SpriteRenderer.sprite == p_Sprite)
             return true;
         else
@@ -16,6 +17,7 @@ public class SpriteManager : MonoBehaviour
 
     public IEnumerator SpriteChangeCoroutine(Transform p_Target, string p_SpriteName)
     {
+        //필요한 스프라이트를 찾아와 변경
         SpriteRenderer t_SpriteRenderer = p_Target.GetComponentInChildren<SpriteRenderer>();
         Sprite t_Sprite = Resources.Load("Char/" + p_SpriteName, typeof(Sprite)) as Sprite;
 

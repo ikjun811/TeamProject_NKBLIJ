@@ -13,18 +13,19 @@ public class DialogueParser : MonoBehaviour
 
         for (int i = 1; i < data.Length;)
         {
-            string[] row = data[i].Split(new char[] { ',' });
+            string[] row = data[i].Split(new char[] { ',' }); //csv을 ','단위로 분할
 
             Dialogue dialogue = new Dialogue();
 
-            dialogue.name = row[1];
+            dialogue.name = row[1]; //캐릭터 이름
 
-            List<string> contextList = new List<string>();
-            List<string> spriteList = new List<string>();
-            List<string> slideList = new List<string>();
+            List<string> contextList = new List<string>(); //대사 
+            List<string> spriteList = new List<string>(); //캐릭터 이미지
+            List<string> slideList = new List<string>(); //아이템 이미지슬라이드
 
             do
             {
+                //분할한 내용을 각각 배열형태로 저장
                 contextList.Add(row[2]);
                 spriteList.Add(row[3]);
                 slideList.Add(row[4]);

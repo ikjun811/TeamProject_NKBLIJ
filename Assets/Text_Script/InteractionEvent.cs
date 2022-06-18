@@ -8,6 +8,7 @@ public class InteractionEvent : MonoBehaviour
 
     void Awake()
     {
+        //전체 대사 내용을 불러와 담아두는 과정
         dialogue.dialogues = DatabaseManager.instance.GetDialogue((int)dialogue.line.x, (int)dialogue.line.y);
     }
 
